@@ -3,6 +3,15 @@
 
 <suite  name="Product tests">
 
+    <parameter name="browser" value="CHROME"/>
+    <parameter name="env" value="QA"/>
+
+    <test name="Booking Test">
+        <classes>
+            <class name="runners.Runner"/>
+        </classes>
+    </test>
+
 
 
 </suite>
