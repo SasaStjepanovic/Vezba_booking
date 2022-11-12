@@ -10,9 +10,9 @@ import java.io.IOException;
 public class startBooking extends BaseTest {
 
     @BeforeMethod
-    @Parameters({"browser"})
-    public void setup(String browser) throws Exception {
-        init(browser);
+    @Parameters({"browser","wait"})
+    public void setup(String browser,String wait) throws Exception {
+        init(browser, wait);
 
     }
 

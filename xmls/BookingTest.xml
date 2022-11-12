@@ -5,6 +5,7 @@
 
     <parameter name="browser" value="CHROME"/>
     <parameter name="env" value="QA"/>
+    <parameter name="wait" value="10"/>
 
     <test name="Booking Test">
         <classes>

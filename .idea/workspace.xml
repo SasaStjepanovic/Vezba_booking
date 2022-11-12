@@ -7,6 +7,10 @@
     <list default="true" id="22bfaba9-414d-48fe-ab71-549b99420521" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/runners/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/runners/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/steps/BaseSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/steps/BaseSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/startBooking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/startBooking.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xmls/BookingTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xmls/BookingTest.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="AnnotationType" />
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
@@ -38,9 +43,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Lenovo/Desktop/QA projekti/Automation_projekti/Vazba_automatizacija_XIII_pom_Cucumber_TestNG_EXCEL_SwagLabs"
+    "last_opened_file_path": "C:/Users/Lenovo/Desktop/QA projekti/Automation_projekti/Vezba_booking/src/test/test_data"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -48,6 +54,9 @@
       <recent name="runners" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\Desktop\QA projekti\Automation_projekti\Vezba_booking\src\test\test_data" />
+      <recent name="C:\Users\Lenovo\Desktop\QA projekti\Automation_projekti\Vezba_booking\src\test\java\pages" />
+      <recent name="C:\Users\Lenovo\Desktop\QA projekti\Automation_projekti\Vezba_booking\src\test\java\features" />
       <recent name="C:\Users\Lenovo\Desktop\QA projekti\Automation_projekti\Vezba_booking\xmls" />
     </key>
   </component>

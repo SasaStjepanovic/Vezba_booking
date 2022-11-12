@@ -11,10 +11,10 @@ public class BaseTest {
     public WebDriver driver;
     DriverManager driverManager;
 
-    public void init(String browser) throws Exception {
+    public void init(String browser, String wait) throws Exception {
         driverManager = DriverManagerFactory.getDriverManager(browser);
         driver = driverManager.getWebDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Integer.parseInt(wait), TimeUnit.SECONDS);
     }
 
     public void openBookingApp(String env) throws Exception {
