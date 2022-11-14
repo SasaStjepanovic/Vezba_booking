@@ -1,5 +1,6 @@
 package pages.components;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,7 +30,8 @@ public class HeaderComponent extends BasePage {
     @FindBy(css = "[aria-controls='airport_taxis']")
     WebElement airportTaxis;
 
-
+    @FindBy(xpath = "//span//div[@class='bui-avatar bui-avatar--small']")
+    WebElement chooseLanguage;
 
     public void clickMenu(){
         clickElement(menu,"Menu button");
@@ -80,5 +82,12 @@ public class HeaderComponent extends BasePage {
     public void navigateToAirportPage(){
         clickElement(airportTaxis, "Airport taxis button");
     }
+
+    public void chooseLanguage(String language){
+        clickElement(chooseLanguage, "Choose language button");
+        clickElement(driver.findElement(By.xpath("//div[@class='bui-group bui-group--large']/div[last()]//div/div[last()]//div[@class='bui-inline-container bui-inline-container--align']//div[contains(text(),'"+language+"')]")), "Clicked on: " +language + " language");
+
+    }
+
 
 }

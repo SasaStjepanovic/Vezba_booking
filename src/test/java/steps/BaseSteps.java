@@ -34,7 +34,7 @@ public class BaseSteps extends BaseTest {
 
     @After
     public void tearDown() throws IOException {
-        quit();
+//        quit();
     }
 
     @Given("I verify that the booking page is open")
@@ -143,5 +143,16 @@ public class BaseSteps extends BaseTest {
     public void iVerifyMultipleResults() throws InterruptedException {
         FlightsHomePage hp = new FlightsHomePage(driver);
         hp.verifyMultipleTripFlightResults(data.get("expectedText3"),data.get("expectedText4"));
+    }
+
+    @And("I choose language")
+    public void iChooseLanguage() throws InterruptedException {
+        new StaysHomePage(driver).headerComponent.chooseLanguage(data.get("language"));
+        pause(2);
+    }
+
+    @Given("I read test data from {string} {string} by row {string}")
+    public void iReadTestDataFromByRow(String fileName, String sheetName, String rowNum) throws IOException {
+        data = new ExcelSupport().getExcelByRow(fileName, sheetName, rowNum);
     }
 }

@@ -13,7 +13,7 @@ public class ExcelSupport {
 
     String prefixPath = "src/test/test_data/";
 
-    public Map<String, String> getExcelRow(String fileName, String sheetName, String rowNum) throws IOException {
+    public Map<String, String> getExcelByRow(String fileName, String sheetName, String rowNum) throws IOException {
 
         FileInputStream fis = new FileInputStream(prefixPath +fileName+ ".xlsx");
         Workbook workbook = new XSSFWorkbook(fis);

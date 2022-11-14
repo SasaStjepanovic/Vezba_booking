@@ -5,6 +5,7 @@ Feature: Stays scenarios include next cases: Set location, start/end date, numbe
 
     Given I read test data from "Booking" "Stays" by id "<TC_ID>"
     Given I verify that the booking page is open
+    And I choose language
     When I enter destination location
     And I enter check in date
     And I enter check out date
@@ -17,5 +18,5 @@ Feature: Stays scenarios include next cases: Set location, start/end date, numbe
 
     Examples:
       | TC_ID  |
-      | TC_002 |
+      | TC_001 |
 
