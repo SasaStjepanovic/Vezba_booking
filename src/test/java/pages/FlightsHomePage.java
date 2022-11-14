@@ -21,8 +21,16 @@ public class FlightsHomePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
+
+
+    @FindBy(css = ".css-k008qs")
+    WebElement sourceOneWayDestinationClicked;
+
     @FindBy(xpath = "//*[@class='css-17g2hv0-radio-group']/li[3]")
     WebElement multipleDestinationRadio;
+
+    @FindBy(xpath = "//*[@class='css-17g2hv0-radio-group']/li[2]")
+    WebElement oneWayDestinationRadio;
 
     @FindBy(css = "[data-testid='add_flight']")
     WebElement addFlight;
@@ -41,6 +49,9 @@ public class FlightsHomePage extends BasePage {
 
     @FindBy(xpath = "//div[contains(@class,'css-171z175')]/div[4]//button[1]//input")
     WebElement openCalendarReturnFlight;
+
+    @FindBy(xpath = "//input[@class='css-g0pg3f-SearchboxInput']")
+    WebElement openCalendarOneWayFlight;
 
     @FindBy(xpath = "//div[contains(@class,'css-171z175')]/div[4]//button[2]//input")
     WebElement returnReturnFlightInfo;
@@ -66,8 +77,16 @@ public class FlightsHomePage extends BasePage {
         Thread.sleep(1000);
         compareData(multipleFlightInfo4, expectedText4);
     }
+
+    public void verifyOneWayFlightResults(String expectedText3){
+        compareData(openCalendarReturnFlight, expectedText3);
+    }
     public void openCalendarReturnFlight(){
         clickElement(openCalendarReturnFlight);
+    }
+
+    public void openCalendarOneWayFlight(){
+        clickElement(openCalendarOneWayFlight);
     }
 
     public void clickMultipleDestinationOption() {
@@ -94,7 +113,17 @@ public class FlightsHomePage extends BasePage {
         typeText(driver.findElement(By.cssSelector("[data-testid='searchbox_origin_input_0']")), origin, "");
         clickElement(driver.findElement(By.xpath("//div[@class='css-1tli02a-autocompleteResults']//li[1]")));
 
-        typeText(driver.findElement(By.cssSelector("[data-testid='searchbox_destination_input_0']")), destination, "");
+        typeText(driver.findElement(By.cssSelector("[data-testid='searchbox_destination_input_0']")), destination, "Round destination is entered: ");
+        clickElement(driver.findElement(By.xpath("//div[@class='css-1tli02a-autocompleteResults']//li[1]")));
+    }
+
+    public void enterOneWayFlight (String origin, String destination){
+        clickElement(oneWayDestinationRadio);
+        clickElement(driver.findElement(By.xpath("//div[@class='css-171z175']//div[1]")));
+        typeText(driver.findElement(By.cssSelector("[data-testid='searchbox_origin_input_0']")), origin, "");
+        clickElement(driver.findElement(By.xpath("//div[@class='css-171z175']/div[3]")));
+
+        typeText(driver.findElement(By.cssSelector("[data-testid='searchbox_destination_input_0']")), destination, "One-way destination is entered: ");
         clickElement(driver.findElement(By.xpath("//div[@class='css-1tli02a-autocompleteResults']//li[1]")));
     }
 

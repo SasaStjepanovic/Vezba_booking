@@ -155,4 +155,22 @@ public class BaseSteps extends BaseTest {
     public void iReadTestDataFromByRow(String fileName, String sheetName, String rowNum) throws IOException {
         data = new ExcelSupport().getExcelByRow(fileName, sheetName, rowNum);
     }
+
+    @And("I enter destination for one way flight")
+    public void iEnterDestinationForOneWayFlight() {
+        new FlightsHomePage(driver).enterOneWayFlight(data.get("origin1"),data.get("destination1"));
+    }
+
+    @And("Check data for one way flight")
+    public void checkDataForOneWayFlight() {
+        FlightsHomePage hp = new FlightsHomePage(driver);
+        hp.openCalendarOneWayFlight();
+        hp.setDate(data.get("month3"),data.get("day3"));
+    }
+
+    @Then("I verify one way results")
+    public void iVerifyOneWayResults() {
+        FlightsHomePage hp = new FlightsHomePage(driver);
+        hp.verifyOneWayFlightResults(data.get("expectedText3"));
+    }
 }
