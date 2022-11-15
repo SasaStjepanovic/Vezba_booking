@@ -72,10 +72,7 @@ public class BasePage {
     }
 
     public void typeText(WebElement element, String text, String log){
-        WebDriverWait webDriverWait = new WebDriverWait(driver,waitTime);
-
-        webDriverWait.until(ExpectedConditions.visibilityOf(element));
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
+        explicitWait(element);
 
         try {
             scrollToElement(element);

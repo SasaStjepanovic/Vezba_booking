@@ -6,9 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="22bfaba9-414d-48fe-ab71-549b99420521" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/features/1_Stays.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/features/1_Stays.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/features/2_Flights.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/features/2_Flights.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/BasePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/pages/FlightsHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/FlightsHomePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/steps/BaseSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/steps/BaseSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/test_data/Booking.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test_data/Booking.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,16 +98,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/pages/components/HeaderComponent.java</url>
-          <line>86</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

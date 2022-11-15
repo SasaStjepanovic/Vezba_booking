@@ -173,4 +173,24 @@ public class BaseSteps extends BaseTest {
         FlightsHomePage hp = new FlightsHomePage(driver);
         hp.verifyOneWayFlightResults(data.get("expectedText3"));
     }
+
+    @And("I change flight class")
+    public void iChangeFlightClass() {
+        new FlightsHomePage(driver).flightClass(data.get("flightClass2"));
+    }
+
+    @And("I verify flight class I")
+    public void iVerifyFlightClassI() {
+        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass1"),data.get("expectedFlightClass1"));
+    }
+
+    @And("I verify flight class II")
+    public void iVerifyFlightClassII() {
+        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass2"),data.get("expectedFlightClass2"));
+
+    }
+
+    @Then("I verify negative round results")
+    public void iVerifyNegativeRoundResults() {
+    }
 }

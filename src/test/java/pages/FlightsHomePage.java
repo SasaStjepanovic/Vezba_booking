@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import pages.components.HeaderComponent;
 
 import java.util.Map;
@@ -22,6 +23,10 @@ public class FlightsHomePage extends BasePage {
     }
 
 
+    @FindBy(xpath = "//div//select[@class='css-1k0jlfl']/option[1]")
+    WebElement flightClassesPreview;
+    @FindBy(xpath = "//div//select[@class='css-1k0jlfl']")
+    WebElement flightClassesButton;
 
     @FindBy(css = ".css-k008qs")
     WebElement sourceOneWayDestinationClicked;
@@ -65,6 +70,16 @@ public class FlightsHomePage extends BasePage {
     String odaklePutujete = "//div[contains(@class,'Stack-module__root--direction-column___2y5oZ')]/div[$]/div[1]";
     String gdePutujete = "//div[contains(@class,'Stack-module__root--direction-column___2y5oZ')]/div[$]/div[3]";
     String kadaPutujete = "//div[contains(@class,'Stack-module__root--direction-column___2y5oZ')]/div[$]/div[4]";
+
+    public void verifyFlightClass(String flightClass, String expectedText){
+        WebElement dropOption = driver.findElement(By.xpath("//div//select[@class='css-1k0jlfl']/option[text()='"+flightClass+"']"));
+        compareData(dropOption, expectedText);
+    }
+    public void flightClass(String dropDownOption){
+        Select dropdown = new Select(flightClassesButton);
+        dropdown.selectByVisibleText(dropDownOption);
+        System.out.println(dropDownOption + " :dropdown is selected");
+    }
 
     public void verifyRoundTripFlightResults(String expectedText3, String expectedText4) throws InterruptedException {
         compareData(openCalendarReturnFlight, expectedText3);
