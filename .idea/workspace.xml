@@ -5,17 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22bfaba9-414d-48fe-ab71-549b99420521" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/features/1_Stays.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/features/1_Stays.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/features/2_Flights.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/features/2_Flights.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/BasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/FlightsHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/FlightsHomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/steps/BaseSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/steps/BaseSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/test_data/Booking.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test_data/Booking.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="AnnotationType" />
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -24,17 +34,49 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2HSbicgN1BKrgN1592FNstfoAmE" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Lenovo/Desktop/QA projekti/Automation_projekti/Vezba_booking/src/test/java/features"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="runners" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\Desktop\QA projekti\Automation_projekti\Vezba_booking\src\test\java\features" />
+      <recent name="C:\Users\Lenovo\Desktop\QA projekti\Automation_projekti\Vezba_booking\src\test\test_data" />
+      <recent name="C:\Users\Lenovo\Desktop\QA projekti\Automation_projekti\Vezba_booking\src\test\java\pages" />
+      <recent name="C:\Users\Lenovo\Desktop\QA projekti\Automation_projekti\Vezba_booking\xmls" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="C:/Users/Lenovo/Desktop/QA projekti/Automation_projekti/Vezba_booking/xmls/BookingTest.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Vezba_booking" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/xmls/BookingTest.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG.C:/Users/Lenovo/Desktop/QA projekti/Automation_projekti/Vezba_booking/xmls/BookingTest.xml" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
