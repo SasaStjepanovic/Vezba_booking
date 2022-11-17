@@ -34,7 +34,7 @@ public class BaseSteps extends BaseTest {
 
     @After
     public void tearDown() throws IOException {
-//        quit();
+        quit();
     }
 
     @Given("I verify that the booking page is open")
@@ -56,7 +56,7 @@ public class BaseSteps extends BaseTest {
     public void iEnterCheckInDate() {
         StaysHomePage staysHomePage = new StaysHomePage(driver);
 
-//        staysHomePage.openCalendar();
+        staysHomePage.openCalendar();
         staysHomePage.setDate(data.get("checkInDate"));
     }
 
@@ -121,7 +121,7 @@ public class BaseSteps extends BaseTest {
     }
 
     @And("I enter destination for round flight")
-    public void iEnterDestinationForRoundFlight() {
+    public void iEnterDestinationForRoundFlight() throws InterruptedException {
         new FlightsHomePage(driver).enterDataReturnFlight(data.get("origin1"),data.get("destination1"));
     }
 
@@ -132,7 +132,6 @@ public class BaseSteps extends BaseTest {
         hp.setDate(data.get("month3"),data.get("day3"));
         hp.setDate(data.get("month4"),data.get("day4"));
     }
-
     @Then("I verify round results")
     public void iVerifyRoundResults() throws InterruptedException {
         FlightsHomePage hp = new FlightsHomePage(driver);
@@ -192,5 +191,32 @@ public class BaseSteps extends BaseTest {
 
     @Then("I verify negative round results")
     public void iVerifyNegativeRoundResults() {
+        new FlightsHomePage(driver).verifyPremiumNegativeScenario(data.get("expectedTextPremium"));
+    }
+
+    @And("I change flight class III")
+    public void iChangeFlightClassIII() {
+        new FlightsHomePage(driver).flightClass(data.get("flightClass3"));
+    }
+
+    @And("I verify flight class III")
+    public void iVerifyFlightClassIII() {
+        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass3"),data.get("expectedFlightClass3"));
+    }
+
+    @And("I change flight class IV")
+    public void iChangeFlightClassIV() {
+        new FlightsHomePage(driver).flightClass(data.get("flightClass4"));
+    }
+
+    @And("I verify flight class IV")
+    public void iVerifyFlightClassIV() {
+        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass4"),data.get("expectedFlightClass4"));
+    }
+
+    @And("I verify negative round results II")
+    public void iVerifyNegativeRoundResultsII() {
+        new FlightsHomePage(driver).verifyPremiumNegativeScenario(data.get("expectedTextFirstClass"));
+
     }
 }
