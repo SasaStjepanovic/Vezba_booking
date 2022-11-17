@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import pages.components.HeaderComponent;
+import tests.BaseTest;
 
 import java.util.Map;
 
@@ -22,19 +23,27 @@ public class FlightsHomePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    @FindBy(xpath = "//div[@class='DismissibleContainer-module__root___hKtwo DismissibleContainer-module__root--hide-close___QnBvt']/div")
+    WebElement premimumNotAllowed;
 
     @FindBy(xpath = "//div//select[@class='css-1k0jlfl']/option[1]")
     WebElement flightClassesPreview;
     @FindBy(xpath = "//div//select[@class='css-1k0jlfl']")
     WebElement flightClassesButton;
 
-    @FindBy(css = ".css-k008qs")
-    WebElement sourceOneWayDestinationClicked;
+    @FindBy(xpath = "//div[@data-testid='searchbox_origin_0']")
+    WebElement originData;
 
-    @FindBy(xpath = "//*[@class='css-17g2hv0-radio-group']/li[3]")
+    @FindBy(xpath = "//div[contains(@class,'autocompleteResults')]/ul/li[1]")
+    WebElement firstBelloworiginData;
+
+    @FindBy(xpath = "(//input[@name='trip-type']/parent::div)[1]")
+    WebElement roundDestinationRadio;
+
+    @FindBy(xpath = "(//input[@name='trip-type']/parent::div)[3]")
     WebElement multipleDestinationRadio;
 
-    @FindBy(xpath = "//*[@class='css-17g2hv0-radio-group']/li[2]")
+    @FindBy(xpath = "(//input[@name='trip-type']/parent::div)[2]")
     WebElement oneWayDestinationRadio;
 
     @FindBy(css = "[data-testid='add_flight']")
@@ -55,7 +64,7 @@ public class FlightsHomePage extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'css-171z175')]/div[4]//button[1]//input")
     WebElement openCalendarReturnFlight;
 
-    @FindBy(xpath = "//input[@class='css-g0pg3f-SearchboxInput']")
+    @FindBy(xpath = "//div//input[contains(@class,'SearchboxInput')]")
     WebElement openCalendarOneWayFlight;
 
     @FindBy(xpath = "//div[contains(@class,'css-171z175')]/div[4]//button[2]//input")
@@ -71,6 +80,13 @@ public class FlightsHomePage extends BasePage {
     String gdePutujete = "//div[contains(@class,'Stack-module__root--direction-column___2y5oZ')]/div[$]/div[3]";
     String kadaPutujete = "//div[contains(@class,'Stack-module__root--direction-column___2y5oZ')]/div[$]/div[4]";
 
+    public void verifyPremiumNegativeScenario(String expectedTextPremium){
+        comparePartOfText(premimumNotAllowed, expectedTextPremium);
+    }
+
+    public void verifyFirstClassNegativeScenario(String expectedTextPremium){
+        comparePartOfText(premimumNotAllowed, expectedTextPremium);
+    }
     public void verifyFlightClass(String flightClass, String expectedText){
         WebElement dropOption = driver.findElement(By.xpath("//div//select[@class='css-1k0jlfl']/option[text()='"+flightClass+"']"));
         compareData(dropOption, expectedText);
@@ -122,24 +138,27 @@ public class FlightsHomePage extends BasePage {
         }
     }
 
-    public void enterDataReturnFlight (String origin, String destination){
-        clickElement(originReturnFlight);
-        clickElement(driver.findElement(By.cssSelector("div.css-hboir5")));
-        typeText(driver.findElement(By.cssSelector("[data-testid='searchbox_origin_input_0']")), origin, "");
-        clickElement(driver.findElement(By.xpath("//div[@class='css-1tli02a-autocompleteResults']//li[1]")));
+    public void enterDataReturnFlight (String origin, String destination) throws InterruptedException {
+        clickElement(originData);
+        typeText(driver.findElement(By.xpath("//input[@data-testid='searchbox_origin_input_0']")), origin, "");
+        clickElement(firstBelloworiginData);
 
-        typeText(driver.findElement(By.cssSelector("[data-testid='searchbox_destination_input_0']")), destination, "Round destination is entered: ");
-        clickElement(driver.findElement(By.xpath("//div[@class='css-1tli02a-autocompleteResults']//li[1]")));
+        clickElementJS(roundDestinationRadio, "JS clicked on radio button");
+        clickElement(driver.findElement(By.xpath("//div[@data-testid='searchbox_destination_0']")));
+        typeText(driver.findElement(By.cssSelector("[data-testid='searchbox_destination_input_0']")), destination, "One-way destination is entered: ");
+        clickElement(firstBelloworiginData);
+
     }
 
     public void enterOneWayFlight (String origin, String destination){
         clickElement(oneWayDestinationRadio);
-        clickElement(driver.findElement(By.xpath("//div[@class='css-171z175']//div[1]")));
-        typeText(driver.findElement(By.cssSelector("[data-testid='searchbox_origin_input_0']")), origin, "");
-        clickElement(driver.findElement(By.xpath("//div[@class='css-171z175']/div[3]")));
+        clickElement(originData);
+        typeText(driver.findElement(By.xpath("//input[@data-testid='searchbox_origin_input_0']")), origin, "");
+        clickElement(firstBelloworiginData);
+        clickElement(driver.findElement(By.xpath("//div[@data-testid='searchbox_destination_0']")));
 
         typeText(driver.findElement(By.cssSelector("[data-testid='searchbox_destination_input_0']")), destination, "One-way destination is entered: ");
-        clickElement(driver.findElement(By.xpath("//div[@class='css-1tli02a-autocompleteResults']//li[1]")));
+        clickElement(driver.findElement(By.xpath("//div[@class='css-7lagpu']")));
     }
 
     private void setFlightDate(String month1, String day1, String i) {
@@ -169,13 +188,13 @@ public class FlightsHomePage extends BasePage {
     public void setOrigin(String origin, String i) {
         driver.findElement(By.xpath(odaklePutujete.replace("$", i))).click();
         typeText(driver.findElement(By.cssSelector("[data-testid='searchbox_origin_input_" + (Integer.parseInt(i) - 1) + "']")), origin, "");
-        clickElement(driver.findElement(By.xpath("//div[@class='css-1tli02a-autocompleteResults']//li[1]")));
+        clickElement(driver.findElement(By.xpath("//div[contains(@class,'autocompleteResults')]/ul/li[1]")));
     }
 
     public void setDestination(String destination, String i) {
         driver.findElement(By.xpath(gdePutujete.replace("$", i))).click();
         typeText(driver.findElement(By.cssSelector("[data-testid='searchbox_destination_input_" + (Integer.parseInt(i) - 1) + "']")), destination, "");
-        clickElement(driver.findElement(By.xpath("//div[@class='css-1tli02a-autocompleteResults']//li[1]")));
+        clickElement(driver.findElement(By.xpath("//div[@class='css-6z6mz5-autocompleteResults']/ul/li[1]")));
     }
 
 

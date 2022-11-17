@@ -54,21 +54,15 @@ public class StaysHomePage extends BasePage {
     @FindBy(xpath = "//div//h1[@class='e1f827110f d3a14d00da']")
     WebElement verificationField;
 
-    @FindBy(xpath = "//ul[@aria-label='List of suggested destinations ']/li[2]")
+    @FindBy(xpath = "//ul[@data-testid='autocomplete-results']/li[1]")
     WebElement clickFirstStayI;
 
-    @FindBy(xpath = "////div//ul[@data-testid='autocomplete-results']/li[1]")
+    @FindBy(xpath = "//ul[@data-testid='autocomplete-results']/li[2]")
     WebElement clickFirstStayII;
 
     public void setLocation(String location) {
+        clickElement(locationInput);
         typeText(locationInput, location, "Location Input");
-
-       if(clickFirstStayI.isDisplayed()){
-           clickElement(clickFirstStayI, "AttemptI: First text from dropdown menu is clicked: ");
-       } else {
-           clickElement(clickFirstStayII, "AttemptII: First text from dropdown menu is clicked: ");
-
-       }
     }
 
     public void openCalendar() {

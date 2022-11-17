@@ -47,6 +47,24 @@ public class BasePage {
             element.click();
         }
     }
+
+    public void clickElementJS(WebElement element, String log) {
+        explicitWait(element);
+
+        try {
+            scrollToElement(element);
+            new Actions(driver).moveToElement(element).build().perform();
+            JavascriptExecutor executor = (JavascriptExecutor)driver;
+            executor.executeScript("arguments[0].click();", element);
+            System.out.println("Clicked element: " + log);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JavascriptExecutor executor = (JavascriptExecutor)driver;
+            executor.executeScript("arguments[0].click();", element);
+            System.out.println("Clicked element: " + log);
+        }
+    }
+
     public void scrollToElement (WebElement element){
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", element);
     }
@@ -65,7 +83,7 @@ public class BasePage {
 
     public void compareData(WebElement element, String expectedData) {
         String actualData = element.getAttribute("value");
-        System.out.println("Vrednost value atribiute je: " + actualData);
+        System.out.println("Value atribiute is: " + actualData);
         Assert.assertTrue(element.isDisplayed(), "Verification test is not displayed");
         Assert.assertEquals(actualData, expectedData);
         System.out.println("Actual displayed data is: " + actualData);
@@ -78,13 +96,32 @@ public class BasePage {
             scrollToElement(element);
             new Actions(driver).moveToElement(element).perform();
             element.click();
-            element.clear();
+//            element.clear();
             element.sendKeys(text);
             System.out.println("Entered text: "+text+" to element: " + log);
         }catch (Exception e){
             e.printStackTrace();
             element.sendKeys(text);
             System.out.println("Entered text: "+text+" to element: " + log);
+        }
+    }
+
+    public void typeTextJS(WebElement element, String log){
+        explicitWait(element);
+
+        try {
+            new Actions(driver).moveToElement(element).build().perform();
+            JavascriptExecutor executor = (JavascriptExecutor)driver;
+            executor.executeScript("arguments[0].click();", element);
+//            executor.executeScript("arguments[0].value='" + text +"';'", element);
+            executor.executeScript("arguments[0].value='IDEMOOOO'", element);
+//            System.out.println("Entered text: "+text+" to element: " + log);
+        }catch (Exception e){
+            e.printStackTrace();
+            JavascriptExecutor executor = (JavascriptExecutor)driver;
+//            executor.executeScript("arguments[0].value='" + text +"''", element);
+//            element.sendKeys(text);
+//            System.out.println("Entered text: "+text+" to element: " + log);
         }
     }
 }
