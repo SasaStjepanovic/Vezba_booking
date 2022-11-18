@@ -1,4 +1,4 @@
-# Project exclude pathss
+# Project exclude paths
 /target
 /.idea
 /allure-results

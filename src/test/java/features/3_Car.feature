@@ -13,5 +13,5 @@ Feature: Car rentals scenarios include next cases:
 
     Examples:
       | TC_ID  |
-      | FL_001 |
+      | FL_004 |
 

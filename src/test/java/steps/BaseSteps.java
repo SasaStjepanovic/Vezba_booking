@@ -236,10 +236,11 @@ public class BaseSteps extends BaseTest {
     }
 
     @And("I choose pickup date")
-    public void iChoosePickupDate() {
+    public void iChoosePickupDate() throws InterruptedException {
         CarsRentalPage crp = new CarsRentalPage(driver);
-        crp.calendar();
-        FlightsHomePage hp = new FlightsHomePage(driver);
-//        hp.setDate(data.get("month3"),data.get("day3"));
+        crp.calendarCars();
+        crp.setDateCars(data.get("month3"),data.get("day3"));
+        crp.setDateCars(data.get("month4"),data.get("day4"));
+        crp.searchCars();
     }
 }
