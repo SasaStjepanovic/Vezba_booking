@@ -6,6 +6,9 @@
     <parameter name="browser" value="CHROME"/>
     <parameter name="env" value="QA"/>
     <parameter name="wait" value="10"/>
+    <parameter name="ScrShoot1" value="ScrShotBefore"/>
+    <parameter name="ScrShootDesc" value="ScreenShot will be happen after the web page would be open "/>
+    <parameter name="ScrYesOrNo" value="YES"/>
 
     <test name="Booking Test">
         <classes>

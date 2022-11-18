@@ -1,12 +1,19 @@
 package pages;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.qameta.allure.Allure;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class BasePage {
     public WebDriver driver;
@@ -129,6 +136,23 @@ public class BasePage {
 //            executor.executeScript("arguments[0].value='" + text +"''", element);
 //            element.sendKeys(text);
 //            System.out.println("Entered text: "+text+" to element: " + log);
+        }
+    }
+
+    public void takeScreenshot(String name, String yesNo) throws IOException {
+        if(yesNo.equalsIgnoreCase("YES")) {
+            File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(file, new File("src/results/screenshots/"+name+".png"));
+        }
+    }
+
+    public void reportScreenshotAllure(String name, String desc, String yesOrNo) throws IOException {
+        if(yesOrNo.equalsIgnoreCase("YES")) {
+            long finish = System.currentTimeMillis();
+            takeScreenshot(name+ "_" +finish, yesOrNo);
+            Path path = Paths.get("src/results/screenshots/"+name+"_"+finish+".png");
+            InputStream is = Files.newInputStream(path);
+            Allure.addAttachment(desc,is);
         }
     }
 }
