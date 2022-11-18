@@ -35,6 +35,9 @@ public class CarsRentalPage extends BasePage {
     @FindBy(xpath = "//button[@class='sb-searchbox__button ']")
     WebElement search;
 
+    @FindBy(xpath = "(//span[@class='c2-button-inner']/..)[2]")
+    WebElement calendarNext;
+
 
     public void setPickUpLocation(String location) {
     clickElement(pickUpFiled, "Pickup filed is entered");
@@ -42,8 +45,27 @@ public class CarsRentalPage extends BasePage {
     clickElement(firstElementBellow, "first element bellow is clicked");
     }
 
-    public void calendar(){
+    public void calendarCars(){
         clickElement(calendar, "Calendar is opened");
+    }
+
+    public void searchCars(){
         clickElement(search, "Search is pressed");
+    }
+
+    public void setDateCars(String month, String day) throws InterruptedException {
+        Thread.sleep(2000);
+        String xpath = "//div[@class='xp__dates-inner']/div[2]//div[@data-id='M1667260800000']//th[contains(text(),'"+month+"')]/../../..//span[text()='"+day+"']";
+
+        if (driver.findElements(By.xpath(xpath)).size() > 0) {
+            clickElement(driver.findElements(By.xpath(xpath)).get(0));
+        } else {
+            while (driver.findElements(By.xpath(xpath)).size() == 0) {
+                clickElement(calendarNext);
+                if (driver.findElements(By.xpath(xpath)).size() > 0) {
+                    clickElement(driver.findElements(By.xpath(xpath)).get(0));
+                }
+            }
+        }
     }
 }
