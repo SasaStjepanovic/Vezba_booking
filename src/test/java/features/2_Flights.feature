@@ -1,4 +1,4 @@
-Feature: Flights scenarios include next cases: Round-trip, One-way and Multi-city
+Feature: Flights scenarios include next cases: Round-trip, One-way, Multi-city, different flight classes
 
   @Flights
   Scenario Outline: Book a Round-trip destination flight
@@ -77,5 +77,5 @@ Feature: Flights scenarios include next cases: Round-trip, One-way and Multi-cit
 
     Examples:
       | row  |
-      |   1  |
+      |   3  |
 

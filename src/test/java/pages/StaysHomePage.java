@@ -27,7 +27,7 @@ public class StaysHomePage extends BasePage {
     @FindBy(css = "[name='ss']")
     WebElement locationInput;
 
-    @FindBy(xpath = "//div[@class='xp__fieldset js--sb-fieldset accommodation ']/div[2]//div")
+    @FindBy(xpath = "(//*[@class='xp__input-group xp__date-time'])[2]")
     WebElement dates;
 
     @FindBy(css = "[data-bui-ref='calendar-next']")
@@ -53,12 +53,6 @@ public class StaysHomePage extends BasePage {
 
     @FindBy(xpath = "//div//h1[@class='e1f827110f d3a14d00da']")
     WebElement verificationField;
-
-    @FindBy(xpath = "//ul[@data-testid='autocomplete-results']/li[1]")
-    WebElement clickFirstStayI;
-
-    @FindBy(xpath = "//ul[@data-testid='autocomplete-results']/li[2]")
-    WebElement clickFirstStayII;
 
     public void setLocation(String location) {
         clickElement(locationInput);
@@ -135,7 +129,7 @@ public class StaysHomePage extends BasePage {
         clickElement(searchButton);
     }
 
-    public void verifyResults(String expextedText){
+    public void verifyResults(String expextedText) throws InterruptedException {
         comparePartOfText(verificationField,expextedText);
     }
 }

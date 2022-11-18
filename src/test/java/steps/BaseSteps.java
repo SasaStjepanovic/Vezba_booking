@@ -9,6 +9,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Reporter;
 import pages.BasePage;
+import pages.CarsRentalPage;
 import pages.FlightsHomePage;
 import pages.StaysHomePage;
 import pages.components.HeaderComponent;
@@ -90,7 +91,7 @@ public class BaseSteps extends BaseTest {
     }
 
     @And("I verify found stays")
-    public void iVerifyFoundStays() {
+    public void iVerifyFoundStays() throws InterruptedException {
         new StaysHomePage(driver).verifyResults(data.get("verifResults"));
     }
 
@@ -116,7 +117,7 @@ public class BaseSteps extends BaseTest {
     }
 
     @And("I click search flights button")
-    public void iClickSearchFlightsButton() {
+    public void iClickSearchFlightsButton() throws InterruptedException {
         new FlightsHomePage(driver).search();
     }
 
@@ -190,7 +191,7 @@ public class BaseSteps extends BaseTest {
     }
 
     @Then("I verify negative round results")
-    public void iVerifyNegativeRoundResults() {
+    public void iVerifyNegativeRoundResults() throws InterruptedException {
         new FlightsHomePage(driver).verifyPremiumNegativeScenario(data.get("expectedTextPremium"));
     }
 
@@ -215,8 +216,26 @@ public class BaseSteps extends BaseTest {
     }
 
     @And("I verify negative round results II")
-    public void iVerifyNegativeRoundResultsII() {
-        new FlightsHomePage(driver).verifyPremiumNegativeScenario(data.get("expectedTextFirstClass"));
+    public void iVerifyNegativeRoundResultsII() throws InterruptedException {
+        new FlightsHomePage(driver).verifyFirstClassNegativeScenario(data.get("expectedTextFirstClass"));
 
+    }
+
+    @When("I enter pickup location")
+    public void iEnterPickupLocation() {
+        new CarsRentalPage(driver).setPickUpLocation(data.get("origin1"));
+    }
+
+    @Given("I am on the booking car page")
+    public void iAmOnTheBookingCarPage() {
+        new HeaderComponent(driver).navigateToCarsPage();
+    }
+
+    @And("I choose pickup date")
+    public void iChoosePickupDate() {
+        CarsRentalPage crp = new CarsRentalPage(driver);
+        crp.calendar();
+        FlightsHomePage hp = new FlightsHomePage(driver);
+//        hp.setDate(data.get("month3"),data.get("day3"));
     }
 }

@@ -5,7 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.components.HeaderComponent;
 import tests.BaseTest;
 
@@ -23,8 +25,14 @@ public class FlightsHomePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//div[@class='DismissibleContainer-module__root___hKtwo DismissibleContainer-module__root--hide-close___QnBvt']/div")
+    @FindBy(xpath = "//div[@data-testid='search_loading_overlay']/div")
+    WebElement popupWindow;
+
+    @FindBy(xpath = "//div[contains(@class,'DismissibleContainer-module')]/div")
     WebElement premimumNotAllowed;
+
+    @FindBy(xpath = "(//div[contains(@class,'Text-module__root--variant-headline_2')]/parent::div)[1]/div")
+    WebElement firstClassNotAllowed;
 
     @FindBy(xpath = "//div//select[@class='css-1k0jlfl']/option[1]")
     WebElement flightClassesPreview;
@@ -80,12 +88,16 @@ public class FlightsHomePage extends BasePage {
     String gdePutujete = "//div[contains(@class,'Stack-module__root--direction-column___2y5oZ')]/div[$]/div[3]";
     String kadaPutujete = "//div[contains(@class,'Stack-module__root--direction-column___2y5oZ')]/div[$]/div[4]";
 
-    public void verifyPremiumNegativeScenario(String expectedTextPremium){
-        comparePartOfText(premimumNotAllowed, expectedTextPremium);
-    }
+    public void verifyPremiumNegativeScenario(String expectedTextPremium) throws InterruptedException {
+//            explicitWaitPopup(popupWindow);
+            comparePartOfText(premimumNotAllowed, expectedTextPremium);
+        }
 
-    public void verifyFirstClassNegativeScenario(String expectedTextPremium){
-        comparePartOfText(premimumNotAllowed, expectedTextPremium);
+
+    public void verifyFirstClassNegativeScenario(String expectedTextClass) throws InterruptedException {
+        explicitWait(firstClassNotAllowed);
+        Thread.sleep(1000);
+        comparePartOfText(firstClassNotAllowed, expectedTextClass);
     }
     public void verifyFlightClass(String flightClass, String expectedText){
         WebElement dropOption = driver.findElement(By.xpath("//div//select[@class='css-1k0jlfl']/option[text()='"+flightClass+"']"));
@@ -181,8 +193,9 @@ public class FlightsHomePage extends BasePage {
         }
     }
 
-    public void search() {
+    public void search() throws InterruptedException {
         clickElement(searchButton);
+        explicitWaitPopup(popupWindow);
     }
 
     public void setOrigin(String origin, String i) {
