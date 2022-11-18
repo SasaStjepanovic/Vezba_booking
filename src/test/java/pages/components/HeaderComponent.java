@@ -21,7 +21,7 @@ public class HeaderComponent extends BasePage {
     WebElement stays;
     @FindBy(css = "[data-decider-header='flights']")
     WebElement flights;
-    @FindBy(css = "[aria-controls='cars']")
+    @FindBy(xpath = "(//ul[contains(@data-et-click,'  customGoal:')])/li[3]")
     WebElement cars;
 
     @FindBy(css = "[data-decider-header='attractions']")

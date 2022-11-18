@@ -10,7 +10,8 @@ import org.testng.Assert;
 
 public class BasePage {
     public WebDriver driver;
-    int waitTime = 30;
+    int waitTime = 45;
+    int waitTime2 = 15;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -20,6 +21,11 @@ public class BasePage {
         WebDriverWait webDriverWait = new WebDriverWait(driver, waitTime);
         webDriverWait.until(ExpectedConditions.visibilityOf(element));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public void explicitWaitPopup(WebElement element) {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, waitTime2);
+        webDriverWait.until(ExpectedConditions.invisibilityOf(element));
     }
 
     public void clickElement(WebElement element, String log) {
@@ -75,9 +81,10 @@ public class BasePage {
         System.out.println("Current url address: " + actualUrl);
         Assert.assertTrue(actualUrl.contains(expextedUrl), actualUrl);
     }
-    public void comparePartOfText(WebElement element, String expectedText) {
+    public void comparePartOfText(WebElement element, String expectedText) throws InterruptedException {
         String actualTitle = element.getText();
         System.out.println("Actual title is: " + actualTitle);
+        Thread.sleep(500);
         Assert.assertTrue(actualTitle.contains(expectedText), actualTitle);
     }
 
