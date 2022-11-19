@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite  name="Product tests" parallel="tests" thread-count="2" >
+<!--<suite  name="Product tests" parallel="tests" thread-count="2" >-->
+<suite  name="Product tests"  >
 
     <parameter name="browser" value="CHROME"/>
     <parameter name="env" value="QA"/>
     <parameter name="wait" value="10"/>
     <parameter name="ScrShoot1" value="ScrShotBefore"/>
+    <parameter name="ScrShoot2" value="ScrShotAfter"/>
     <parameter name="ScrShootDesc" value="ScreenShot will be happen after the web page would be open "/>
-    <parameter name="ScrYesOrNo" value="NO"/>
+    <parameter name="ScrYesOrNo" value="YES"/>
 
     <test name="Booking Test">
         <classes>

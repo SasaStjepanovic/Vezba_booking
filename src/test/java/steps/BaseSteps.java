@@ -26,6 +26,8 @@ public class BaseSteps extends BaseTest {
     String env = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("env");
     String wait = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("wait");
     String ScrShoot1 = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("ScrShoot1");
+
+    String ScrShoot2 = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("ScrShoot2");
     String ScrShootDesc = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("ScrShootDesc");
     String ScrYesOrNo = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("ScrYesOrNo");
 
@@ -38,7 +40,7 @@ public class BaseSteps extends BaseTest {
 
     @After
     public void tearDown() throws IOException {
-        new BasePage(driver).takeScreenshot(ScrShoot1, ScrYesOrNo);
+        new BasePage(driver).takeScreenshot(ScrShoot2, ScrYesOrNo);
         quit();
     }
 
