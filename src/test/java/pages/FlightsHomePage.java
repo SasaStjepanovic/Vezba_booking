@@ -129,7 +129,6 @@ public class FlightsHomePage extends BasePage {
             for(int i = 0; i<Integer.parseInt(childrenNum);i++){
                 clickElement(flightChildrenPlus);
                 Thread.sleep(1000);
-//                Select s = new Select(driver.findElement(By.xpath("(//*[contains(text(),'1st child's age')]/../..)/div["+(i+1)+"]//select")));
                 Select s = new Select(driver.findElement(By.xpath("(//div[contains(@data-testid,'input_occupancy_desktop_child_')])["+(i+1)+"]//select")));
                 s.selectByValue(ages[i]);
             }
@@ -139,12 +138,6 @@ public class FlightsHomePage extends BasePage {
     public void verifyPremiumNegativeScenario(String expectedTextPremium) throws InterruptedException {
         comparePartOfText(premimumNotAllowed, expectedTextPremium);
         }
-
-     public void flightPassengerButton(){
-        clickElement(flightPassengers, "Flight passenger button is pressed");
-     }
-
-
 
     public void verifyFirstClassNegativeScenario(String expectedTextClass) throws InterruptedException {
         explicitWait(firstClassNotAllowed);

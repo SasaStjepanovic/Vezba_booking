@@ -41,7 +41,7 @@ public class BaseSteps extends BaseTest {
     @After
     public void tearDown() throws IOException {
         new BasePage(driver).takeScreenshot(ScrShoot2, ScrYesOrNo);
-//        quit();
+        quit();
     }
 
     @Given("I verify that the booking page is open")
