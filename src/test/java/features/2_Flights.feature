@@ -8,15 +8,16 @@ Feature: Flights scenarios include next cases: Round-trip, One-way, Multi-city, 
     And I choose language
     Given I am on the booking flights page
     And I verify that I on flights page
-    And I enter destination for round flight
+    And Add adults and children
     And Check date for round flight
+    And I enter destination for round flight
     And I click search flights button
     Then I verify round results
 
     Examples:
       | row  |
-      |  1   |
       |  3   |
+
 
   @Flights
   Scenario Outline: Book a one-way destination flight

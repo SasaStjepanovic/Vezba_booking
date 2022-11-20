@@ -41,7 +41,7 @@ public class BaseSteps extends BaseTest {
     @After
     public void tearDown() throws IOException {
         new BasePage(driver).takeScreenshot(ScrShoot2, ScrYesOrNo);
-        quit();
+//        quit();
     }
 
     @Given("I verify that the booking page is open")
@@ -244,5 +244,11 @@ public class BaseSteps extends BaseTest {
         crp.setDateCars(data.get("month3"),data.get("day3"));
         crp.setDateCars(data.get("month4"),data.get("day4"));
         crp.searchCars();
+    }
+
+    @And("Add adults and children")
+    public void addAdultsAndChildren() throws InterruptedException {
+        FlightsHomePage flights = new FlightsHomePage(driver);
+        flights.openPassengerMenu(data.get("numAdultsFlight"), data.get("numChildrenFlight"), data.get("childrenAgesFlight"));
     }
 }

@@ -55,7 +55,7 @@ public class CarsRentalPage extends BasePage {
 
     public void setDateCars(String month, String day) throws InterruptedException {
         Thread.sleep(2000);
-        String xpath = "//div[@class='xp__dates-inner']/div[2]//div[@data-id='M1667260800000']//th[contains(text(),'"+month+"')]/../../..//span[text()='"+day+"']";
+        String xpath = "//h3[contains(text(),'" +month+ "')]/..//span[text()='" +day+ "']";
 
         if (driver.findElements(By.xpath(xpath)).size() > 0) {
             clickElement(driver.findElements(By.xpath(xpath)).get(0));

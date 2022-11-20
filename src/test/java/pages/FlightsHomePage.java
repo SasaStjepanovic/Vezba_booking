@@ -34,10 +34,23 @@ public class FlightsHomePage extends BasePage {
     @FindBy(xpath = "(//div[contains(@class,'Text-module__root--variant-headline_2')]/parent::div)[1]/div")
     WebElement firstClassNotAllowed;
 
-    @FindBy(xpath = "//div//select[@class='css-1k0jlfl']/option[1]")
-    WebElement flightClassesPreview;
     @FindBy(xpath = "//div//select[@class='css-1k0jlfl']")
     WebElement flightClassesButton;
+
+    @FindBy(css = "[data-testid='input_occupancy_desktop_passengers_trigger']")
+    WebElement flightPassengers;
+
+    @FindBy(css = "[data-testid='input_occupancy_modal_adults_decrease']")
+    WebElement flighAdultsMinus;
+
+    @FindBy(css = "[data-testid='input_occupancy_modal_adults_increase']")
+    WebElement flightAdultsPlus;
+
+    @FindBy(css = "[data-testid='input_occupancy_modal_children_decrease']")
+    WebElement flightChildrenMinus;
+
+    @FindBy(css = "[data-testid='input_occupancy_modal_children_increase']")
+    WebElement flightChildrenPlus;
 
     @FindBy(xpath = "//div[@data-testid='searchbox_origin_0']")
     WebElement originData;
@@ -88,10 +101,49 @@ public class FlightsHomePage extends BasePage {
     String gdePutujete = "//div[contains(@class,'Stack-module__root--direction-column___2y5oZ')]/div[$]/div[3]";
     String kadaPutujete = "//div[contains(@class,'Stack-module__root--direction-column___2y5oZ')]/div[$]/div[4]";
 
-    public void verifyPremiumNegativeScenario(String expectedTextPremium) throws InterruptedException {
-//            explicitWaitPopup(popupWindow);
-            comparePartOfText(premimumNotAllowed, expectedTextPremium);
+    public void openPassengerMenu(String adultNum,String childrenNum, String childrenAges) throws InterruptedException {
+        clickElement(flightPassengers, "Passenger options is appeared");
+        addAdultsFlight(adultNum);
+        addChildrenFlight(childrenNum, childrenAges);
+
+    }
+    public void addAdultsFlight(String num){
+        if(num.equalsIgnoreCase("0")) {
+            // do nothing
+        }  else if(num.equalsIgnoreCase("1")){
+        //do nothing
         }
+        else {
+            for (int i = 1; i < Integer.parseInt(num);i++){
+                clickElement(flightAdultsPlus);
+            }
+        }
+    }
+
+    public void addChildrenFlight(String childrenNum, String childrenAges) throws InterruptedException {
+        String[] ages = childrenAges.split(" ");
+
+        if(childrenNum.equalsIgnoreCase("0")){
+            //do nothing
+        }else {
+            for(int i = 0; i<Integer.parseInt(childrenNum);i++){
+                clickElement(flightChildrenPlus);
+                Thread.sleep(1000);
+//                Select s = new Select(driver.findElement(By.xpath("(//*[contains(text(),'1st child's age')]/../..)/div["+(i+1)+"]//select")));
+                Select s = new Select(driver.findElement(By.xpath("(//div[contains(@data-testid,'input_occupancy_desktop_child_')])["+(i+1)+"]//select")));
+                s.selectByValue(ages[i]);
+            }
+        }
+    }
+
+    public void verifyPremiumNegativeScenario(String expectedTextPremium) throws InterruptedException {
+        comparePartOfText(premimumNotAllowed, expectedTextPremium);
+        }
+
+     public void flightPassengerButton(){
+        clickElement(flightPassengers, "Flight passenger button is pressed");
+     }
+
 
 
     public void verifyFirstClassNegativeScenario(String expectedTextClass) throws InterruptedException {
