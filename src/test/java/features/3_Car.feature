@@ -8,6 +8,8 @@ Feature: Car rentals scenarios include next cases:
     And I choose language
     Given I am on the booking car page
     When I enter pickup location
+    And I choose calendar
+    And I choose pickup and dropoff time
     And I choose pickup date
 
 

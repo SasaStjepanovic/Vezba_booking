@@ -39,7 +39,7 @@ public class BaseSteps extends BaseTest {
     @After
     public void tearDown() throws IOException {
         new BasePage(driver).takeScreenshot(ScrShoot1, ScrYesOrNo);
-        quit();
+//        quit();
     }
 
     @Given("I verify that the booking page is open")
@@ -238,9 +238,27 @@ public class BaseSteps extends BaseTest {
     @And("I choose pickup date")
     public void iChoosePickupDate() throws InterruptedException {
         CarsRentalPage crp = new CarsRentalPage(driver);
-        crp.calendarCars();
         crp.setDateCars(data.get("month3"),data.get("day3"));
         crp.setDateCars(data.get("month4"),data.get("day4"));
+        Thread.sleep(4000);
         crp.searchCars();
+    }
+
+    @And("I choose calendar")
+    public void iChooseCalendar() {
+        CarsRentalPage crp = new CarsRentalPage(driver);
+        crp.calendarCars();
+    }
+
+    @And("I choose pickup time")
+    public void iChoosePickupTime() {
+        CarsRentalPage crp = new CarsRentalPage(driver);
+        crp.pickupTime(data.get("pickupHour"),data.get("pickupMinutes"));
+    }
+
+    @And("I choose pickup and dropoff time")
+    public void iChoosePickupAndDropoffTime() {
+        CarsRentalPage crp = new CarsRentalPage(driver);
+        crp.pickUpAndDropOffTime(data.get("pickupHour"),data.get("pickupMinutes"),data.get("dropHour"),data.get("dropMinutes"));
     }
 }
