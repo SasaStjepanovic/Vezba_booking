@@ -76,12 +76,6 @@ public class FlightsHomePage extends BasePage {
     @FindBy(css = "[data-testid='searchbox_submit']")
     WebElement searchButton;
 
-    @FindBy(xpath = "//div[contains(@class,'css-171z175')]/div[1]")
-    WebElement originReturnFlight;
-
-    @FindBy(xpath = "//div[contains(@class,'css-171z175')]/div[3]")
-    WebElement destinationReturnFlight;
-
     @FindBy(xpath = "//div[contains(@class,'css-171z175')]/div[4]//button[1]//input")
     WebElement openCalendarReturnFlight;
 
@@ -215,7 +209,7 @@ public class FlightsHomePage extends BasePage {
         clickElement(driver.findElement(By.xpath("//div[@data-testid='searchbox_destination_0']")));
 
         typeText(driver.findElement(By.cssSelector("[data-testid='searchbox_destination_input_0']")), destination, "One-way destination is entered: ");
-        clickElement(driver.findElement(By.xpath("//div[@class='css-7lagpu']")));
+        clickElement(driver.findElement(By.xpath("//div[@data-testid='autocomplete_result']")));
     }
 
     private void setFlightDate(String month1, String day1, String i) {
