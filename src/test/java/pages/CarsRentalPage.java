@@ -29,7 +29,7 @@ public class CarsRentalPage extends BasePage {
     @FindBy(xpath = "(//span[@class='search_hl_name']/parent::span)[2]")
     WebElement firstElementBellow;
 
-    @FindBy(xpath = "(//div[@data-visible='accommodation,flights,rentalcars']/parent::div)[2]")
+    @FindBy(xpath = "(//div[@data-visible='accommodation,flights,rentalcars']/parent::div)[3]")
     WebElement calendar;
 
     @FindBy(xpath = "//button[@class='sb-searchbox__button ']")
@@ -37,6 +37,18 @@ public class CarsRentalPage extends BasePage {
 
     @FindBy(xpath = "(//span[@class='c2-button-inner']/..)[2]")
     WebElement calendarNext;
+
+    @FindBy(css = "[name='checkinTime']")
+    WebElement pickupHours;
+
+    @FindBy(css = "[name='checkinTimeMinutes']")
+    WebElement pickupMinutes;
+
+    @FindBy(css = "[name='checkoutTime']")
+    WebElement dropHours;
+
+    @FindBy(css = "[name='checkoutTimeMinutes']")
+    WebElement dropMinutes;
 
 
     public void setPickUpLocation(String location) {
@@ -54,8 +66,7 @@ public class CarsRentalPage extends BasePage {
     }
 
     public void setDateCars(String month, String day) throws InterruptedException {
-        Thread.sleep(2000);
-        String xpath = "//h3[contains(text(),'" +month+ "')]/..//span[text()='" +day+ "']";
+        String xpath = "//div[@class='xp__dates-inner']/div[2]//div[@class='c2-month']//th[contains(text(),'"+month+"')]/../../..//span[text()='"+day+"']";
 
         if (driver.findElements(By.xpath(xpath)).size() > 0) {
             clickElement(driver.findElements(By.xpath(xpath)).get(0));
@@ -67,5 +78,28 @@ public class CarsRentalPage extends BasePage {
                 }
             }
         }
+    }
+
+    public void pickupTime(String hour, String minutes){
+        Select dropdown1 = new Select(pickupHours);
+        Select dropdown2 = new Select(pickupMinutes);
+        dropdown1.selectByVisibleText(hour);
+        dropdown2.selectByVisibleText(minutes);
+        System.out.println("Pickup houres: " + hour);
+        System.out.println("Pickup minutes: " + minutes);
+    }
+
+    public void dropTime(String hour1, String minutes1){
+        Select dropdown1 = new Select(dropHours);
+        Select dropdown2 = new Select(dropMinutes);
+        dropdown1.selectByVisibleText(hour1);
+        dropdown2.selectByVisibleText(minutes1);
+        System.out.println("Dropoff houres: " + hour1);
+        System.out.println("Dropoff minutes: " + minutes1);
+    }
+
+    public void pickUpAndDropOffTime(String hour, String minutes, String hour1, String minutes1){
+        pickupTime(hour,minutes);
+        dropTime(hour1,minutes1);
     }
 }
