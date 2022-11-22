@@ -2,7 +2,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
 <suite  name="Product tests" parallel="tests" thread-count="2" data-provider-thread-count="2" >
-<!--<suite  name="Product tests"  >-->
 
     <parameter name="browser" value="CHROME"/>
     <parameter name="env" value="QA"/>
