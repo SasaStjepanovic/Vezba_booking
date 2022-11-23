@@ -110,7 +110,7 @@ public class BasePage {
             scrollToElement(element);
             new Actions(driver).moveToElement(element).perform();
             element.click();
-//            element.clear();
+            element.clear();
             element.sendKeys(text);
             System.out.println("Entered text: "+text+" to element: " + log);
         }catch (Exception e){

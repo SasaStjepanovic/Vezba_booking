@@ -9,9 +9,8 @@ Feature: Car rentals scenarios include next cases:
     Given I am on the booking car page
     When I enter pickup location
     And I choose calendar
-    And I choose pickup and dropoff time
     And I choose pickup date
-
+    And I choose pickup and dropoff time
 
     Examples:
       | TC_ID  |
