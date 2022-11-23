@@ -15,7 +15,6 @@ Feature: Stays scenarios include next cases: Set location, start/end date, numbe
     And I click search button
     And I verify found stays
 
-
     Examples:
       | TC_ID  |
       | TC_001 |

@@ -18,7 +18,6 @@ Feature: Flights scenarios include next cases: Round-trip, One-way, Multi-city, 
       | row  |
       |  3   |
 
-
   @Flights
   Scenario Outline: Book a one-way destination flight
 
