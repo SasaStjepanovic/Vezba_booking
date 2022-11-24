@@ -285,6 +285,16 @@ public class BaseSteps extends BaseTest {
     public void iVerifySearchIsNotPossible() throws InterruptedException {
         CarsRentalPage crp = new CarsRentalPage(driver);
         crp.verifyErrorCarsLocationMessage(data.get("emptyLocatinMessage"));
+    }
+    @And("I choose invalid age")
+    public void iChooseInvalidAge() {
+        CarsRentalPage crp = new CarsRentalPage(driver);
+        crp.changeDriversAge(data.get("driverAges"));
+    }
 
+    @And("I verify ages are beyond of valid range")
+    public void iVerifyAgesAreBeyondOfValidRange() throws InterruptedException {
+        CarsRentalPage crp = new CarsRentalPage(driver);
+        crp.verifyErrorAgesMessage(data.get("wrongAgesMessage"));
     }
 }
