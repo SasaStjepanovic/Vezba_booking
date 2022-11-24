@@ -19,6 +19,4 @@ Feature: Stays scenarios include next cases: Set location, start/end date, numbe
       | TC_ID  |
       | TC_003 |
       | TC_002 |
-      | TC_001 |
-      | TC_004 |
 

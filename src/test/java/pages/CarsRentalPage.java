@@ -50,6 +50,12 @@ public class CarsRentalPage extends BasePage {
     @FindBy(css = "[name='checkoutTimeMinutes']")
     WebElement dropMinutes;
 
+    @FindBy(xpath = "//div[@data-visible='rentalcars']//div[@data-component='search/destination/input']//div[contains(@class,'fe_banner__message')]")
+    WebElement wrongMessageLocation;
+
+    public void verifyErrorCarsLocationMessage(String expectedText) throws InterruptedException {
+        comparePartOfText(wrongMessageLocation, expectedText);
+    }
 
     public void setPickUpLocation(String location) {
         clickElement(pickUpFiled, "Pickup filed is entered");
