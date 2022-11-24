@@ -53,14 +53,32 @@ public class CarsRentalPage extends BasePage {
     @FindBy(xpath = "//div[@data-visible='rentalcars']//div[@data-component='search/destination/input']//div[contains(@class,'fe_banner__message')]")
     WebElement wrongMessageLocation;
 
+    @FindBy(xpath = "//form[@id='frm']//div[contains(@class,'bui-inline-container')]//div[contains(@class,'fe_banner__message')]")
+    WebElement wrongMessageAges;
+
+    @FindBy(xpath = "//span[contains(@class,'bui-checkbox__label')]")
+    WebElement driverAgeBetween;
+
+    @FindBy(css = "#driverAgeInput")
+    WebElement driverAgeBeyond;
+
     public void verifyErrorCarsLocationMessage(String expectedText) throws InterruptedException {
         comparePartOfText(wrongMessageLocation, expectedText);
+    }
+
+    public void verifyErrorAgesMessage(String expectedText) throws InterruptedException {
+        comparePartOfText(wrongMessageAges, expectedText);
     }
 
     public void setPickUpLocation(String location) {
         clickElement(pickUpFiled, "Pickup filed is entered");
         typeText(typeText, location, "Pickup locaton is entered: ");
         clickElement(firstElementBellow, "first element bellow is clicked");
+    }
+
+    public void changeDriversAge(String age){
+        clickElement(driverAgeBetween, "Driver ager check box button is clicked");
+        typeText(driverAgeBeyond,age, "Age is entered");
     }
 
     public void calendarCars() {
