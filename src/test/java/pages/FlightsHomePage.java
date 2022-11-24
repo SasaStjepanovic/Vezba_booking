@@ -135,7 +135,7 @@ public class FlightsHomePage extends BasePage {
 
     public void verifyFirstClassNegativeScenario(String expectedTextClass) throws InterruptedException {
         explicitWait(firstClassNotAllowed);
-        Thread.sleep(1000);
+        explicitWaitPopup(popupWindow);
         comparePartOfText(firstClassNotAllowed, expectedTextClass);
     }
 

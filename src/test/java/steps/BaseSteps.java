@@ -41,7 +41,7 @@ public class BaseSteps extends BaseTest {
     @After
     public void tearDown() throws IOException {
         new BasePage(driver).takeScreenshot(ScrShoot1, ScrYesOrNo);
-//        quit();
+        quit();
     }
 
     @Given("I verify that the booking page is open")
@@ -267,5 +267,24 @@ public class BaseSteps extends BaseTest {
     public void iChoosePickupAndDropoffTime() {
         CarsRentalPage crp = new CarsRentalPage(driver);
         crp.pickUpAndDropOffTime(data.get("pickupHour"), data.get("pickupMinutes"), data.get("dropHour"), data.get("dropMinutes"));
+    }
+
+    @And("I choose search option")
+    public void iChooseSearchOption() {
+        CarsRentalPage crp = new CarsRentalPage(driver);
+        crp.searchCars();
+    }
+
+
+    @And("I verify that I on car page")
+    public void iVerifyThatIOnCarPage() {
+        new BasePage(driver).checkUrlPage(data.get("urlCarsPage"));
+    }
+
+    @And("I verify search is not possible")
+    public void iVerifySearchIsNotPossible() throws InterruptedException {
+        CarsRentalPage crp = new CarsRentalPage(driver);
+        crp.verifyErrorCarsLocationMessage(data.get("emptyLocatinMessage"));
+
     }
 }
