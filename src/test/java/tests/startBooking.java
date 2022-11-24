@@ -10,15 +10,15 @@ import java.io.IOException;
 public class startBooking extends BaseTest {
 
     @BeforeMethod
-    @Parameters({"browser","wait"})
-    public void setup(String browser,String wait) throws Exception {
+    @Parameters({"browser", "wait"})
+    public void setup(String browser, String wait) throws Exception {
         init(browser, wait);
 
     }
 
     @Test
     @Parameters({"env"})
-    public void startBook (String env) throws Exception {
+    public void startBook(String env) throws Exception {
         openBookingApp(env);
         Thread.sleep(5000);
     }

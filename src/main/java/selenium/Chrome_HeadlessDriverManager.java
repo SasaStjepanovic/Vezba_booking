@@ -4,7 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class Chrome_HeadlessDriverManager extends DriverManager{
+public class Chrome_HeadlessDriverManager extends DriverManager {
     @Override
     public void createWebDriver() {
         WebDriverManager.chromedriver().setup();
