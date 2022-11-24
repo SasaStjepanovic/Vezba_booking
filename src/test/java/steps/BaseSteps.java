@@ -33,7 +33,7 @@ public class BaseSteps extends BaseTest {
 
     @Before
     public void setup() throws Exception {
-        init(browser,wait);
+        init(browser, wait);
         openBookingApp(env);
         new BasePage(driver).reportScreenshotAllure(ScrShoot1, ScrShootDesc, ScrYesOrNo);
     }
@@ -41,7 +41,7 @@ public class BaseSteps extends BaseTest {
     @After
     public void tearDown() throws IOException {
         new BasePage(driver).takeScreenshot(ScrShoot1, ScrYesOrNo);
-        quit();
+//        quit();
     }
 
     @Given("I verify that the booking page is open")
@@ -55,14 +55,13 @@ public class BaseSteps extends BaseTest {
     }
 
     @When("I enter destination location")
-    public void iEnterDestinationLocation() {
+    public void iEnterDestinationLocation() throws InterruptedException {
         new StaysHomePage(driver).setLocation(data.get("location"));
     }
 
     @And("I enter check in date")
-    public void iEnterCheckInDate() {
+    public void iEnterCheckInDate() throws InterruptedException {
         StaysHomePage staysHomePage = new StaysHomePage(driver);
-
         staysHomePage.openCalendar();
         staysHomePage.setDate(data.get("checkInDate"));
     }
@@ -129,26 +128,27 @@ public class BaseSteps extends BaseTest {
 
     @And("I enter destination for round flight")
     public void iEnterDestinationForRoundFlight() throws InterruptedException {
-        new FlightsHomePage(driver).enterDataReturnFlight(data.get("origin1"),data.get("destination1"));
+        new FlightsHomePage(driver).enterDataReturnFlight(data.get("origin1"), data.get("destination1"));
     }
 
     @And("Check date for round flight")
     public void checkDateForReturnFlight() {
         FlightsHomePage hp = new FlightsHomePage(driver);
         hp.openCalendarReturnFlight();
-        hp.setDate(data.get("month3"),data.get("day3"));
-        hp.setDate(data.get("month4"),data.get("day4"));
+        hp.setDate(data.get("month3"), data.get("day3"));
+        hp.setDate(data.get("month4"), data.get("day4"));
     }
+
     @Then("I verify round results")
     public void iVerifyRoundResults() throws InterruptedException {
         FlightsHomePage hp = new FlightsHomePage(driver);
-        hp.verifyRoundTripFlightResults(data.get("expectedText3"),data.get("expectedText4"));
+        hp.verifyRoundTripFlightResults(data.get("expectedText3"), data.get("expectedText4"));
     }
 
     @Then("I verify multiple results")
     public void iVerifyMultipleResults() throws InterruptedException {
         FlightsHomePage hp = new FlightsHomePage(driver);
-        hp.verifyMultipleTripFlightResults(data.get("expectedText3"),data.get("expectedText4"));
+        hp.verifyMultipleTripFlightResults(data.get("expectedText3"), data.get("expectedText4"));
     }
 
     @And("I choose language")
@@ -164,14 +164,14 @@ public class BaseSteps extends BaseTest {
 
     @And("I enter destination for one way flight")
     public void iEnterDestinationForOneWayFlight() {
-        new FlightsHomePage(driver).enterOneWayFlight(data.get("origin1"),data.get("destination1"));
+        new FlightsHomePage(driver).enterOneWayFlight(data.get("origin1"), data.get("destination1"));
     }
 
     @And("Check data for one way flight")
     public void checkDataForOneWayFlight() {
         FlightsHomePage hp = new FlightsHomePage(driver);
         hp.openCalendarOneWayFlight();
-        hp.setDate(data.get("month3"),data.get("day3"));
+        hp.setDate(data.get("month3"), data.get("day3"));
     }
 
     @Then("I verify one way results")
@@ -187,12 +187,12 @@ public class BaseSteps extends BaseTest {
 
     @And("I verify flight class I")
     public void iVerifyFlightClassI() {
-        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass1"),data.get("expectedFlightClass1"));
+        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass1"), data.get("expectedFlightClass1"));
     }
 
     @And("I verify flight class II")
     public void iVerifyFlightClassII() {
-        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass2"),data.get("expectedFlightClass2"));
+        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass2"), data.get("expectedFlightClass2"));
 
     }
 
@@ -208,7 +208,7 @@ public class BaseSteps extends BaseTest {
 
     @And("I verify flight class III")
     public void iVerifyFlightClassIII() {
-        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass3"),data.get("expectedFlightClass3"));
+        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass3"), data.get("expectedFlightClass3"));
     }
 
     @And("I change flight class IV")
@@ -218,7 +218,7 @@ public class BaseSteps extends BaseTest {
 
     @And("I verify flight class IV")
     public void iVerifyFlightClassIV() {
-        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass4"),data.get("expectedFlightClass4"));
+        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass4"), data.get("expectedFlightClass4"));
     }
 
     @And("I verify negative round results II")
@@ -240,8 +240,8 @@ public class BaseSteps extends BaseTest {
     @And("I choose pickup date")
     public void iChoosePickupDate() throws InterruptedException {
         CarsRentalPage crp = new CarsRentalPage(driver);
-        crp.setDateCars(data.get("month3"),data.get("day3"));
-        crp.setDateCars(data.get("month4"),data.get("day4"));
+        crp.setDateCars(data.get("month3"), data.get("day3"));
+        crp.setDateCars(data.get("month4"), data.get("day4"));
         crp.searchCars();
     }
 
@@ -260,12 +260,12 @@ public class BaseSteps extends BaseTest {
     @And("I choose pickup time")
     public void iChoosePickupTime() {
         CarsRentalPage crp = new CarsRentalPage(driver);
-        crp.pickupTime(data.get("pickupHour"),data.get("pickupMinutes"));
+        crp.pickupTime(data.get("pickupHour"), data.get("pickupMinutes"));
     }
 
     @And("I choose pickup and dropoff time")
     public void iChoosePickupAndDropoffTime() {
         CarsRentalPage crp = new CarsRentalPage(driver);
-        crp.pickUpAndDropOffTime(data.get("pickupHour"),data.get("pickupMinutes"),data.get("dropHour"),data.get("dropMinutes"));
+        crp.pickUpAndDropOffTime(data.get("pickupHour"), data.get("pickupMinutes"), data.get("dropHour"), data.get("dropMinutes"));
     }
 }

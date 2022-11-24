@@ -52,22 +52,22 @@ public class CarsRentalPage extends BasePage {
 
 
     public void setPickUpLocation(String location) {
-    clickElement(pickUpFiled, "Pickup filed is entered");
-    typeText(typeText, location, "Pickup locaton is entered: ");
-    clickElement(firstElementBellow, "first element bellow is clicked");
+        clickElement(pickUpFiled, "Pickup filed is entered");
+        typeText(typeText, location, "Pickup locaton is entered: ");
+        clickElement(firstElementBellow, "first element bellow is clicked");
     }
 
-    public void calendarCars(){
+    public void calendarCars() {
         clickElement(calendar, "Calendar is opened");
     }
 
-    public void searchCars(){
+    public void searchCars() {
         clickElement(search, "Search is pressed");
     }
 
     public void setDateCars(String month, String day) throws InterruptedException {
 //        String xpath = "//div[@class='xp__dates-inner']/div[2]//div[@class='c2-month']//th[contains(text(),'"+month+"')]/../../..//span[text()='"+day+"']";
-        String xpath = "(//*[@class='c2-month-table']//th[contains(text(),'"+month+"')]/../../..//*[text()='"+day+"'])[1]";
+        String xpath = "(//*[@class='c2-month-table']//th[contains(text(),'" + month + "')]/../../..//*[text()='" + day + "'])[1]";
 
         if (driver.findElements(By.xpath(xpath)).size() > 0) {
             clickElement(driver.findElements(By.xpath(xpath)).get(0));
@@ -81,7 +81,7 @@ public class CarsRentalPage extends BasePage {
         }
     }
 
-    public void pickupTime(String hour, String minutes){
+    public void pickupTime(String hour, String minutes) {
         Select dropdown1 = new Select(pickupHours);
         Select dropdown2 = new Select(pickupMinutes);
         dropdown1.selectByVisibleText(hour);
@@ -90,7 +90,7 @@ public class CarsRentalPage extends BasePage {
         System.out.println("Pickup minutes: " + minutes);
     }
 
-    public void dropTime(String hour1, String minutes1){
+    public void dropTime(String hour1, String minutes1) {
         Select dropdown1 = new Select(dropHours);
         Select dropdown2 = new Select(dropMinutes);
         dropdown1.selectByVisibleText(hour1);
@@ -99,8 +99,8 @@ public class CarsRentalPage extends BasePage {
         System.out.println("Dropoff minutes: " + minutes1);
     }
 
-    public void pickUpAndDropOffTime(String hour, String minutes, String hour1, String minutes1){
-        pickupTime(hour,minutes);
-        dropTime(hour1,minutes1);
+    public void pickUpAndDropOffTime(String hour, String minutes, String hour1, String minutes1) {
+        pickupTime(hour, minutes);
+        dropTime(hour1, minutes1);
     }
 }

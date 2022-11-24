@@ -15,7 +15,7 @@ public class ExcelSupport {
 
     public Map<String, String> getExcelByRow(String fileName, String sheetName, String rowNum) throws IOException {
 
-        FileInputStream fis = new FileInputStream(prefixPath +fileName+ ".xlsx");
+        FileInputStream fis = new FileInputStream(prefixPath + fileName + ".xlsx");
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheet(sheetName);
 
@@ -25,10 +25,10 @@ public class ExcelSupport {
 
         Map<String, String> data = new HashMap<>();
 
-        for(int i = 0; i < lastColumnNum; i++){
+        for (int i = 0; i < lastColumnNum; i++) {
             data.put(
                     sheet.getRow(2).getCell(i).getStringCellValue(),
-                    sheet.getRow((row+2)).getCell(i).getStringCellValue()
+                    sheet.getRow((row + 2)).getCell(i).getStringCellValue()
             );
         }
         return data;
@@ -48,8 +48,8 @@ public class ExcelSupport {
 
         for (int rowIndex = 2; rowIndex <= lastRowNum; rowIndex++) {
             if (sheet.getRow(rowIndex).getCell(0).getStringCellValue().equalsIgnoreCase(testID)) {
-                if(match > 1){
-                    throw new Exception("Multiple Test Case ID's found for Test Case ID: "+testID);
+                if (match > 1) {
+                    throw new Exception("Multiple Test Case ID's found for Test Case ID: " + testID);
                 }
                 for (int columnIndex = 0; columnIndex < lastColumnNum; columnIndex++) {
                     data.put(

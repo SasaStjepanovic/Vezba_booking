@@ -30,8 +30,14 @@ public class StaysHomePage extends BasePage {
     @FindBy(xpath = "(//*[@class='xp__input-group xp__date-time'])[2]")
     WebElement dates;
 
+    @FindBy(xpath = "//button[@data-testid='date-display-field-start']")
+    WebElement dates2;
+
     @FindBy(css = "[data-bui-ref='calendar-next']")
-    WebElement calendarNext;
+    WebElement calendarNext1;
+
+    @FindBy(css = ".ae1678b153.c9fa5fc96d.be298b15fa")
+    WebElement calendarNext2;
 
     @FindBy(css = ".xp__guests__count")
     WebElement guestCount;
@@ -54,9 +60,16 @@ public class StaysHomePage extends BasePage {
     @FindBy(xpath = "//div//h1[@class='e1f827110f d3a14d00da']")
     WebElement verificationField;
 
-    public void setLocation(String location) {
+    @FindBy(xpath = "//ul[@data-testid='autocomplete-results']/li[1]")
+    WebElement firstElementBellow;
+
+    @FindBy(xpath = "//input[@name='ss']/../../ul/li[1]")
+    WebElement firstElementBellow1;
+
+    public void setLocation(String location) throws InterruptedException {
         clickElement(locationInput);
         typeText(locationInput, location, "Location Input");
+
     }
 
     public void openCalendar() {
@@ -71,7 +84,7 @@ public class StaysHomePage extends BasePage {
             clickElement(driver.findElements(By.xpath("//div[text()='" + monthYear + "']/..//span[text()='" + day + "']")).get(0));
         } else {
             while (driver.findElements(By.xpath("//div[text()='" + monthYear + "']/..//span[text()='" + day + "']")).size() == 0) {
-                clickElement(calendarNext);
+                clickElement(calendarNext1);
                 if (driver.findElements(By.xpath("//div[text()='" + monthYear + "']/..//span[text()='" + day + "']")).size() > 0) {
                     clickElement(driver.findElements(By.xpath("//div[text()='" + monthYear + "']/..//span[text()='" + day + "']")).get(0));
                 }
@@ -79,22 +92,22 @@ public class StaysHomePage extends BasePage {
         }
     }
 
-    public void openGuestMenu(){
+    public void openGuestMenu() {
         clickElement(guestCount);
     }
 
-    public void setGuestInfo(String adultNum){
+    public void setGuestInfo(String adultNum) {
         openGuestMenu();
         addAdults(adultNum);
     }
 
-    public void addAdults(String num){
-        if(num.equalsIgnoreCase("1")){
+    public void addAdults(String num) {
+        if (num.equalsIgnoreCase("1")) {
             clickElement(adultsMinus);
-        } else if(num.equalsIgnoreCase("2")){
+        } else if (num.equalsIgnoreCase("2")) {
             //do nothing
         } else {
-            for (int i = 2; i < Integer.parseInt(num);i++){
+            for (int i = 2; i < Integer.parseInt(num); i++) {
                 clickElement(adultsPlus);
             }
         }
@@ -103,23 +116,23 @@ public class StaysHomePage extends BasePage {
     public void addChildren(String childrenNum, String childrenAges) throws InterruptedException {
         String[] ages = childrenAges.split(" ");
 
-        if(childrenNum.equalsIgnoreCase("0")){
+        if (childrenNum.equalsIgnoreCase("0")) {
             //do nothing
-        }else {
-            for(int i = 0; i<Integer.parseInt(childrenNum);i++){
+        } else {
+            for (int i = 0; i < Integer.parseInt(childrenNum); i++) {
                 clickElement(childrenPlus);
                 Thread.sleep(500);
-                Select s = new Select(driver.findElement(By.cssSelector("[data-group-child-age='"+i+"']")));
+                Select s = new Select(driver.findElement(By.cssSelector("[data-group-child-age='" + i + "']")));
                 s.selectByValue(ages[i]);
             }
         }
     }
 
     public void addRooms(String roomNum) {
-        if(roomNum.equalsIgnoreCase("1")){
+        if (roomNum.equalsIgnoreCase("1")) {
             //do nothing
         } else {
-            for (int i = 1; i<Integer.parseInt(roomNum);i++){
+            for (int i = 1; i < Integer.parseInt(roomNum); i++) {
                 clickElement(roomsPlus);
             }
         }
@@ -130,6 +143,6 @@ public class StaysHomePage extends BasePage {
     }
 
     public void verifyResults(String expextedText) throws InterruptedException {
-        comparePartOfText(verificationField,expextedText);
+        comparePartOfText(verificationField, expextedText);
     }
 }

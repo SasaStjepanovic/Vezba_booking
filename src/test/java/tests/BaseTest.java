@@ -18,32 +18,32 @@ public class BaseTest {
     }
 
     public void openBookingApp(String env) throws Exception {
-        switch (env.toUpperCase()){
-            case "QA" :{
+        switch (env.toUpperCase()) {
+            case "QA": {
                 driver.get("https://www.booking.com/");
             }
             break;
-            case "PROD" :{
+            case "PROD": {
                 driver.get("https://www.gmail.com/");
             }
             break;
-            case "BIZ" :{
+            case "BIZ": {
                 driver.get("https://www.yahoo.com/");
             }
             break;
-            default: throw new Exception("No such environment: "+env);
+            default:
+                throw new Exception("No such environment: " + env);
 
         }
     }
 
-    public void quit(){
+    public void quit() {
         driverManager.quitWebDriver();
     }
 
     public void pause(int sec) throws InterruptedException {
-        Thread.sleep(sec*1000);
+        Thread.sleep(sec * 1000);
     }
-
 
 
 }

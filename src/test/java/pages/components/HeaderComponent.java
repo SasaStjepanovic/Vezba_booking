@@ -33,59 +33,60 @@ public class HeaderComponent extends BasePage {
     @FindBy(xpath = "//span//div[@class='bui-avatar bui-avatar--small']")
     WebElement chooseLanguage;
 
-    public void clickMenu(){
-        clickElement(menu,"Menu button");
+    public void clickMenu() {
+        clickElement(menu, "Menu button");
     }
 
     public void navigateToPage(String pageName) throws Exception {
-        switch (pageName.toLowerCase()){
-            case "stays":{
+        switch (pageName.toLowerCase()) {
+            case "stays": {
                 navigateToStaysPage();
             }
             break;
-            case "flights":{
+            case "flights": {
                 navigateToFlightsPage();
             }
             break;
-            case "cars":{
+            case "cars": {
                 navigateToCarsPage();
             }
             break;
-            case "attractions":{
+            case "attractions": {
                 navigateToAttractionPage();
             }
             break;
-            case "airports":{
+            case "airports": {
                 navigateToAirportPage();
             }
             break;
-            default: throw new Exception("No such page: "+pageName);
+            default:
+                throw new Exception("No such page: " + pageName);
         }
     }
 
-    public void navigateToStaysPage(){
+    public void navigateToStaysPage() {
         clickElement(stays, "Stays button");
     }
 
-    public void navigateToFlightsPage(){
+    public void navigateToFlightsPage() {
         clickElement(flights, "Flights button");
     }
 
-    public void navigateToCarsPage(){
+    public void navigateToCarsPage() {
         clickElement(cars, "Car rentals button");
     }
 
-    public void navigateToAttractionPage(){
+    public void navigateToAttractionPage() {
         clickElement(attractions, "Attractions button");
     }
 
-    public void navigateToAirportPage(){
+    public void navigateToAirportPage() {
         clickElement(airportTaxis, "Airport taxis button");
     }
 
-    public void chooseLanguage(String language){
+    public void chooseLanguage(String language) {
         clickElement(chooseLanguage, "Choose language button");
-        clickElement(driver.findElement(By.xpath("//div[@class='bui-group bui-group--large']/div[last()]//div/div[last()]//div[@class='bui-inline-container bui-inline-container--align']//div[contains(text(),'"+language+"')]")), "Clicked on: " +language + " language");
+        clickElement(driver.findElement(By.xpath("//div[@class='bui-group bui-group--large']/div[last()]//div/div[last()]//div[@class='bui-inline-container bui-inline-container--align']//div[contains(text(),'" + language + "')]")), "Clicked on: " + language + " language");
 
     }
 

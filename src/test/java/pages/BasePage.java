@@ -49,15 +49,28 @@ public class BasePage {
         }
     }
 
-    public void clickElement(WebElement element){
+    public void clickElement(WebElement element) {
         explicitWait(element);
         try {
             scrollToElement(element);
             new Actions(driver).moveToElement(element).perform();
             element.click();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             element.click();
+        }
+    }
+
+    public void clickDoubleElementStayslocation(WebElement element1, WebElement element2) {
+
+        try {
+//            explicitWait(element1);
+//            scrollToElement(element1);
+            new Actions(driver).moveToElement(element1).perform();
+            element1.click();
+        } catch (Exception e) {
+            e.printStackTrace();
+            element2.click();
         }
     }
 
@@ -67,27 +80,28 @@ public class BasePage {
         try {
             scrollToElement(element);
             new Actions(driver).moveToElement(element).build().perform();
-            JavascriptExecutor executor = (JavascriptExecutor)driver;
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", element);
             System.out.println("Clicked element: " + log);
         } catch (Exception e) {
             e.printStackTrace();
-            JavascriptExecutor executor = (JavascriptExecutor)driver;
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", element);
             System.out.println("Clicked element: " + log);
         }
     }
 
-    public void scrollToElement (WebElement element){
+    public void scrollToElement(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", element);
     }
 
-    public void checkUrlPage (String url){
+    public void checkUrlPage(String url) {
         String expextedUrl = "https://www.booking.com/" + url;
         String actualUrl = driver.getCurrentUrl();
         System.out.println("Current url address: " + actualUrl);
         Assert.assertTrue(actualUrl.contains(expextedUrl), actualUrl);
     }
+
     public void comparePartOfText(WebElement element, String expectedText) throws InterruptedException {
         String actualTitle = element.getText();
         System.out.println("Actual title is: " + actualTitle);
@@ -103,7 +117,7 @@ public class BasePage {
         System.out.println("Actual displayed data is: " + actualData);
     }
 
-    public void typeText(WebElement element, String text, String log){
+    public void typeText(WebElement element, String text, String log) {
         explicitWait(element);
 
         try {
@@ -112,27 +126,27 @@ public class BasePage {
             element.click();
             element.clear();
             element.sendKeys(text);
-            System.out.println("Entered text: "+text+" to element: " + log);
-        }catch (Exception e){
+            System.out.println("Entered text1: " + text + " to element: " + log);
+        } catch (Exception e) {
             e.printStackTrace();
             element.sendKeys(text);
-            System.out.println("Entered text: "+text+" to element: " + log);
+            System.out.println("Entered text2: " + text + " to element: " + log);
         }
     }
 
-    public void typeTextJS(WebElement element, String log){
+    public void typeTextJS(WebElement element, String log) {
         explicitWait(element);
 
         try {
             new Actions(driver).moveToElement(element).build().perform();
-            JavascriptExecutor executor = (JavascriptExecutor)driver;
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", element);
 //            executor.executeScript("arguments[0].value='" + text +"';'", element);
             executor.executeScript("arguments[0].value='IDEMOOOO'", element);
 //            System.out.println("Entered text: "+text+" to element: " + log);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            JavascriptExecutor executor = (JavascriptExecutor)driver;
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
 //            executor.executeScript("arguments[0].value='" + text +"''", element);
 //            element.sendKeys(text);
 //            System.out.println("Entered text: "+text+" to element: " + log);
@@ -140,19 +154,19 @@ public class BasePage {
     }
 
     public void takeScreenshot(String name, String yesNo) throws IOException {
-        if(yesNo.equalsIgnoreCase("YES")) {
+        if (yesNo.equalsIgnoreCase("YES")) {
             File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(file, new File("src/results/screenshots/"+name+".png"));
+            FileUtils.copyFile(file, new File("src/results/screenshots/" + name + ".png"));
         }
     }
 
     public void reportScreenshotAllure(String name, String desc, String yesOrNo) throws IOException {
-        if(yesOrNo.equalsIgnoreCase("YES")) {
+        if (yesOrNo.equalsIgnoreCase("YES")) {
             long finish = System.currentTimeMillis();
-            takeScreenshot(name+ "_" +finish, yesOrNo);
-            Path path = Paths.get("src/results/screenshots/"+name+"_"+finish+".png");
+            takeScreenshot(name + "_" + finish, yesOrNo);
+            Path path = Paths.get("src/results/screenshots/" + name + "_" + finish + ".png");
             InputStream is = Files.newInputStream(path);
-            Allure.addAttachment(desc,is);
+            Allure.addAttachment(desc, is);
         }
     }
 }

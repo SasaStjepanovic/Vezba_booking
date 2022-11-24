@@ -95,20 +95,20 @@ public class FlightsHomePage extends BasePage {
     String gdePutujete = "//div[contains(@class,'Stack-module__root--direction-column___2y5oZ')]/div[$]/div[3]";
     String kadaPutujete = "//div[contains(@class,'Stack-module__root--direction-column___2y5oZ')]/div[$]/div[4]";
 
-    public void openPassengerMenu(String adultNum,String childrenNum, String childrenAges) throws InterruptedException {
+    public void openPassengerMenu(String adultNum, String childrenNum, String childrenAges) throws InterruptedException {
         clickElement(flightPassengers, "Passenger options is appeared");
         addAdultsFlight(adultNum);
         addChildrenFlight(childrenNum, childrenAges);
 
     }
-    public void addAdultsFlight(String num){
-        if(num.equalsIgnoreCase("0")) {
+
+    public void addAdultsFlight(String num) {
+        if (num.equalsIgnoreCase("0")) {
             // do nothing
-        }  else if(num.equalsIgnoreCase("1")){
-        //do nothing
-        }
-        else {
-            for (int i = 1; i < Integer.parseInt(num);i++){
+        } else if (num.equalsIgnoreCase("1")) {
+            //do nothing
+        } else {
+            for (int i = 1; i < Integer.parseInt(num); i++) {
                 clickElement(flightAdultsPlus);
             }
         }
@@ -117,13 +117,13 @@ public class FlightsHomePage extends BasePage {
     public void addChildrenFlight(String childrenNum, String childrenAges) throws InterruptedException {
         String[] ages = childrenAges.split(" ");
 
-        if(childrenNum.equalsIgnoreCase("0")){
+        if (childrenNum.equalsIgnoreCase("0")) {
             //do nothing
-        }else {
-            for(int i = 0; i<Integer.parseInt(childrenNum);i++){
+        } else {
+            for (int i = 0; i < Integer.parseInt(childrenNum); i++) {
                 clickElement(flightChildrenPlus);
                 Thread.sleep(1000);
-                Select s = new Select(driver.findElement(By.xpath("(//div[contains(@data-testid,'input_occupancy_desktop_child_')])["+(i+1)+"]//select")));
+                Select s = new Select(driver.findElement(By.xpath("(//div[contains(@data-testid,'input_occupancy_desktop_child_')])[" + (i + 1) + "]//select")));
                 s.selectByValue(ages[i]);
             }
         }
@@ -131,18 +131,20 @@ public class FlightsHomePage extends BasePage {
 
     public void verifyPremiumNegativeScenario(String expectedTextPremium) throws InterruptedException {
         comparePartOfText(premimumNotAllowed, expectedTextPremium);
-        }
+    }
 
     public void verifyFirstClassNegativeScenario(String expectedTextClass) throws InterruptedException {
         explicitWait(firstClassNotAllowed);
         Thread.sleep(1000);
         comparePartOfText(firstClassNotAllowed, expectedTextClass);
     }
-    public void verifyFlightClass(String flightClass, String expectedText){
-        WebElement dropOption = driver.findElement(By.xpath("//div//select[@class='css-1k0jlfl']/option[text()='"+flightClass+"']"));
+
+    public void verifyFlightClass(String flightClass, String expectedText) {
+        WebElement dropOption = driver.findElement(By.xpath("//div//select[@class='css-1k0jlfl']/option[text()='" + flightClass + "']"));
         compareData(dropOption, expectedText);
     }
-    public void flightClass(String dropDownOption){
+
+    public void flightClass(String dropDownOption) {
         Select dropdown = new Select(flightClassesButton);
         dropdown.selectByVisibleText(dropDownOption);
         System.out.println(dropDownOption + " :dropdown is selected");
@@ -160,14 +162,15 @@ public class FlightsHomePage extends BasePage {
         compareData(multipleFlightInfo4, expectedText4);
     }
 
-    public void verifyOneWayFlightResults(String expectedText3){
+    public void verifyOneWayFlightResults(String expectedText3) {
         compareData(openCalendarReturnFlight, expectedText3);
     }
-    public void openCalendarReturnFlight(){
+
+    public void openCalendarReturnFlight() {
         clickElement(openCalendarReturnFlight);
     }
 
-    public void openCalendarOneWayFlight(){
+    public void openCalendarOneWayFlight() {
         clickElement(openCalendarOneWayFlight);
     }
 
@@ -179,17 +182,17 @@ public class FlightsHomePage extends BasePage {
         int destinations = Integer.parseInt(data.get("numDestinations"));
 
         for (int i = 1; i <= destinations; i++) {
-            if(i>2){
+            if (i > 2) {
                 clickElement(addFlight);
             }
-            setOrigin(data.get("origin"+i),String.valueOf(i));
-            setDestination(data.get("destination"+i),String.valueOf(i));
-            setFlightDate(data.get("month"+i), data.get("day"+i),String.valueOf(i));
+            setOrigin(data.get("origin" + i), String.valueOf(i));
+            setDestination(data.get("destination" + i), String.valueOf(i));
+            setFlightDate(data.get("month" + i), data.get("day" + i), String.valueOf(i));
             Thread.sleep(500);
         }
     }
 
-    public void enterDataReturnFlight (String origin, String destination) throws InterruptedException {
+    public void enterDataReturnFlight(String origin, String destination) throws InterruptedException {
         clickElement(originData);
         typeText(driver.findElement(By.xpath("//input[@data-testid='searchbox_origin_input_0']")), origin, "");
         clickElement(firstBelloworiginData);
@@ -201,7 +204,7 @@ public class FlightsHomePage extends BasePage {
 
     }
 
-    public void enterOneWayFlight (String origin, String destination){
+    public void enterOneWayFlight(String origin, String destination) {
         clickElement(oneWayDestinationRadio);
         clickElement(originData);
         typeText(driver.findElement(By.xpath("//input[@data-testid='searchbox_origin_input_0']")), origin, "");

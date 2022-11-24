@@ -16,8 +16,8 @@ public class FooterComponent extends BasePage {
     @FindBy(css = ".social_twitter")
     WebElement twitterIcon;
 
-    public void clickTwitterIcon(){
-        clickElement(twitterIcon,"Twitter button");
+    public void clickTwitterIcon() {
+        clickElement(twitterIcon, "Twitter button");
     }
 
 }
