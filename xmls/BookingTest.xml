@@ -7,7 +7,7 @@
     <parameter name="env" value="QA"/>
     <parameter name="wait" value="10"/>
     <parameter name="ScrShoot1" value="ScrShotBefore"/>
-    <parameter name="ScrShoot2" value="ScrShotAfter"/>
+    <parameter name="ScrShoot2" value="ScrShotLanguageIssue"/>
     <parameter name="ScrShootDesc" value="ScreenShot will be happen after the web page would be open "/>
     <parameter name="ScrYesOrNo" value="YES"/>
 

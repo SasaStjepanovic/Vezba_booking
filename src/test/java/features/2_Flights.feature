@@ -2,17 +2,15 @@ Feature: Flights scenarios include next cases: Round-trip, One-way, Multi-city, 
 
   @Flights
   Scenario Outline: Book a Round-trip destination flight
-
-    Given I read test data from "Booking" "Flights" by row "<row>"
-    Given I verify that the booking page is open
-    And I choose language
-    Given I am on the booking flights page
-    And I verify that I on flights page
-    And Add adults and children
-    And Check date for round flight
-    And I enter destination for round flight
-    And I click search flights button
-    Then I verify round results
+    Given a user reads test data from "Booking" "Flights" by row "<row>"
+    And the booking page is opened
+    And the language is chosen
+    And the booking flight page is opened
+    When a user add number of adult and children at the flights card
+    When a user enters check in and checkout date for flights card
+    And a user enters destination location for round-trip on flights card
+    And a user clicks search button on the flights card
+    Then round-trip should be verified
 
     Examples:
       | row  |
@@ -21,60 +19,55 @@ Feature: Flights scenarios include next cases: Round-trip, One-way, Multi-city, 
   @Flights
   Scenario Outline: Book a one-way destination flight
 
-    Given I read test data from "Booking" "Flights" by id "<TC_ID>"
-    Given I verify that the booking page is open
-    And I choose language
-    Given I am on the booking flights page
-    And I verify that I on flights page
-    And I enter destination for one way flight
-    And Check data for one way flight
-    And I click search flights button
-    Then I verify one way results
+    Given a user reads test data from "Booking" "Flights" by row "<row>"
+    And the booking page is opened
+    And the language is chosen
+    And the booking flight page is opened
+    When a user enters destination location for one-way on flights card
+    When a user sets date for one-way on flights card
+    And a user clicks search button on the flights card
+    Then one-way should be verified
 
     Examples:
-      | TC_ID  |
-      | FL_001 |
+      | row  |
+      | 1 |
 
   @Flights
   Scenario Outline: Book a multiple destination flight
 
-    Given I read test data from "Booking" "Flights" by id "<TC_ID>"
-    Given I verify that the booking page is open
-    And I choose language
-    Given I am on the booking flights page
-    And I verify that I on flights page
-    And I select multiple destination option
-    And I enter destinations
-    And I click search flights button
-    Then I verify multiple results
+    Given a user reads test data from "Booking" "Flights" by row "<row>"
+    And the booking page is opened
+    And the language is chosen
+    And the booking flight page is opened
+    And a user chosen multiple option
+    When a user add destinations
+    Then multiple should be verified
 
     Examples:
-      | TC_ID  |
-      | FL_001 |
+      | row  |
+      | 1 |
 
   @Flights
   Scenario Outline: Choose different flight class
 
-    Given I read test data from "Booking" "Flights" by row "<row>"
-    Given I verify that the booking page is open
-    And I choose language
-    Given I am on the booking flights page
-    And I verify that I on flights page
-    And I enter destination for round flight
-    And Check date for round flight
-    And I verify flight class I
-    And I click search flights button
-    Then I verify round results
-    And I change flight class
-    And I verify flight class II
-    And I click search flights button
-    Then I verify negative round results
-    And I change flight class III
-    And I verify flight class III
-    And I click search flights button
-    And I change flight class IV
-    And I click search flights button
-    And I verify negative round results II
+    Given a user reads test data from "Booking" "Flights" by row "<row>"
+    And the booking page is opened
+    And the language is chosen
+    And the booking flight page is opened
+    When a user add number of adult and children at the flights card
+    When a user enters check in and checkout date for flights card
+    And a user enters destination location for round-trip on flights card
+    And a user chosen I class
+    And a user clicks search button on the flights card
+    When a user chosen II class
+    And a user clicks search button on the flights card
+    And chosen II clas should be verified
+    When a user chosen III class
+    And a user clicks search button on the flights card
+    And chosen III clas should be verified
+    When a user chosen IV class
+    And a user clicks search button on the flights card
+    Then chosen IV clas should be verified
 
     Examples:
       | row  |

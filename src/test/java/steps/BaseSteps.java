@@ -44,197 +44,15 @@ public class BaseSteps extends BaseTest {
         quit();
     }
 
-    @Given("I verify that the booking page is open")
-    public void iVerifyThatTheBookingPageIsOpen() {
-        new BasePage(driver).checkUrlPage(data.get("urlBasePage"));
-    }
-
-    @Given("I read test data from {string} {string} by id {string}")
-    public void iReadTestDataFromById(String fileName, String sheetName, String id) throws Exception {
-        data = new ExcelSupport().getDataByID(fileName, sheetName, id);
-    }
-
-    @When("I enter destination location")
-    public void iEnterDestinationLocation() throws InterruptedException {
-        new StaysHomePage(driver).setLocation(data.get("location"));
-    }
-
-    @And("I enter check in date")
-    public void iEnterCheckInDate() throws InterruptedException {
-        StaysHomePage staysHomePage = new StaysHomePage(driver);
-        staysHomePage.openCalendar();
-        staysHomePage.setDate(data.get("checkInDate"));
-    }
-
-    @And("I enter check out date")
-    public void iEnterCheckOutDate() {
-        new StaysHomePage(driver).setDate(data.get("checkOutDate"));
-    }
-
-    @And("I add adults")
-    public void iAddAdults() {
-        StaysHomePage staysHomePage = new StaysHomePage(driver);
-
-        staysHomePage.openGuestMenu();
-        staysHomePage.addAdults(data.get("numAdults"));
-    }
-
-    @And("I add children")
-    public void iAddChildren() throws InterruptedException {
-        StaysHomePage staysHomePage = new StaysHomePage(driver);
-        staysHomePage.addChildren(data.get("numChildren"), data.get("childrenAges"));
-    }
-
-    @And("I add rooms")
-    public void iAddRooms() {
-        new StaysHomePage(driver).addRooms(data.get("numRooms"));
-    }
-
-    @And("I click search button")
-    public void iClickSearchButton() {
-        new StaysHomePage(driver).clickSearchButton();
-    }
-
-    @And("I verify found stays")
-    public void iVerifyFoundStays() throws InterruptedException {
-        new StaysHomePage(driver).verifyResults(data.get("verifResults"));
-    }
-
-
-    @And("I verify that I on flights page")
-    public void iVerifyThatIOnFlightsPage() {
-        new BasePage(driver).checkUrlPage(data.get("urlFlightPage"));
-    }
-
-    @And("I select multiple destination option")
-    public void iSelectMultipleDestinationOption() {
-        new FlightsHomePage(driver).clickMultipleDestinationOption();
-    }
-
-    @Given("I am on the booking flights page")
-    public void iAmOnTheBookingFlightsPage() {
-        new StaysHomePage(driver).headerComponent.navigateToFlightsPage();
-    }
-
-    @And("I enter destinations")
-    public void iEnterDestinations() throws InterruptedException {
-        new FlightsHomePage(driver).enterDestinations(data);
-    }
-
-    @And("I click search flights button")
-    public void iClickSearchFlightsButton() throws InterruptedException {
-        new FlightsHomePage(driver).search();
-    }
-
-    @And("I enter destination for round flight")
-    public void iEnterDestinationForRoundFlight() throws InterruptedException {
-        new FlightsHomePage(driver).enterDataReturnFlight(data.get("origin1"), data.get("destination1"));
-    }
-
-    @And("Check date for round flight")
-    public void checkDateForReturnFlight() {
-        FlightsHomePage hp = new FlightsHomePage(driver);
-        hp.openCalendarReturnFlight();
-        hp.setDate(data.get("month3"), data.get("day3"));
-        hp.setDate(data.get("month4"), data.get("day4"));
-    }
-
-    @Then("I verify round results")
-    public void iVerifyRoundResults() throws InterruptedException {
-        FlightsHomePage hp = new FlightsHomePage(driver);
-        hp.verifyRoundTripFlightResults(data.get("expectedText3"), data.get("expectedText4"));
-    }
-
-    @Then("I verify multiple results")
-    public void iVerifyMultipleResults() throws InterruptedException {
-        FlightsHomePage hp = new FlightsHomePage(driver);
-        hp.verifyMultipleTripFlightResults(data.get("expectedText3"), data.get("expectedText4"));
-    }
-
-    @And("I choose language")
-    public void iChooseLanguage() throws InterruptedException {
-        new StaysHomePage(driver).headerComponent.chooseLanguage(data.get("language"));
-        pause(2);
-    }
-
-    @Given("I read test data from {string} {string} by row {string}")
-    public void iReadTestDataFromByRow(String fileName, String sheetName, String rowNum) throws IOException {
-        data = new ExcelSupport().getExcelByRow(fileName, sheetName, rowNum);
-    }
-
-    @And("I enter destination for one way flight")
-    public void iEnterDestinationForOneWayFlight() {
-        new FlightsHomePage(driver).enterOneWayFlight(data.get("origin1"), data.get("destination1"));
-    }
-
-    @And("Check data for one way flight")
-    public void checkDataForOneWayFlight() {
-        FlightsHomePage hp = new FlightsHomePage(driver);
-        hp.openCalendarOneWayFlight();
-        hp.setDate(data.get("month3"), data.get("day3"));
-    }
-
     @Then("I verify one way results")
     public void iVerifyOneWayResults() {
         FlightsHomePage hp = new FlightsHomePage(driver);
         hp.verifyOneWayFlightResults(data.get("expectedText3"));
     }
 
-    @And("I change flight class")
-    public void iChangeFlightClass() {
-        new FlightsHomePage(driver).flightClass(data.get("flightClass2"));
-    }
-
-    @And("I verify flight class I")
-    public void iVerifyFlightClassI() {
-        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass1"), data.get("expectedFlightClass1"));
-    }
-
-    @And("I verify flight class II")
-    public void iVerifyFlightClassII() {
-        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass2"), data.get("expectedFlightClass2"));
-
-    }
-
-    @Then("I verify negative round results")
-    public void iVerifyNegativeRoundResults() throws InterruptedException {
-        new FlightsHomePage(driver).verifyPremiumNegativeScenario(data.get("expectedTextPremium"));
-    }
-
-    @And("I change flight class III")
-    public void iChangeFlightClassIII() {
-        new FlightsHomePage(driver).flightClass(data.get("flightClass3"));
-    }
-
-    @And("I verify flight class III")
-    public void iVerifyFlightClassIII() {
-        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass3"), data.get("expectedFlightClass3"));
-    }
-
-    @And("I change flight class IV")
-    public void iChangeFlightClassIV() {
-        new FlightsHomePage(driver).flightClass(data.get("flightClass4"));
-    }
-
     @And("I verify flight class IV")
     public void iVerifyFlightClassIV() {
         new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass4"), data.get("expectedFlightClass4"));
-    }
-
-    @And("I verify negative round results II")
-    public void iVerifyNegativeRoundResultsII() throws InterruptedException {
-        new FlightsHomePage(driver).verifyFirstClassNegativeScenario(data.get("expectedTextFirstClass"));
-
-    }
-
-    @When("I enter pickup location")
-    public void iEnterPickupLocation() {
-        new CarsRentalPage(driver).setPickUpLocation(data.get("origin1"));
-    }
-
-    @Given("I am on the booking car page")
-    public void iAmOnTheBookingCarPage() {
-        new HeaderComponent(driver).navigateToCarsPage();
     }
 
     @And("I choose pickup date")
@@ -245,56 +63,219 @@ public class BaseSteps extends BaseTest {
         crp.searchCars();
     }
 
-    @And("Add adults and children")
-    public void addAdultsAndChildren() throws InterruptedException {
-        FlightsHomePage flights = new FlightsHomePage(driver);
-        flights.openPassengerMenu(data.get("numAdultsFlight"), data.get("numChildrenFlight"), data.get("childrenAgesFlight"));
-    }
-
-    @And("I choose calendar")
-    public void iChooseCalendar() {
-        CarsRentalPage crp = new CarsRentalPage(driver);
-        crp.calendarCars();
-    }
-
     @And("I choose pickup time")
     public void iChoosePickupTime() {
         CarsRentalPage crp = new CarsRentalPage(driver);
         crp.pickupTime(data.get("pickupHour"), data.get("pickupMinutes"));
     }
 
-    @And("I choose pickup and dropoff time")
-    public void iChoosePickupAndDropoffTime() {
-        CarsRentalPage crp = new CarsRentalPage(driver);
-        crp.pickUpAndDropOffTime(data.get("pickupHour"), data.get("pickupMinutes"), data.get("dropHour"), data.get("dropMinutes"));
-    }
-
-    @And("I choose search option")
-    public void iChooseSearchOption() {
-        CarsRentalPage crp = new CarsRentalPage(driver);
-        crp.searchCars();
-    }
-
-
-    @And("I verify that I on car page")
-    public void iVerifyThatIOnCarPage() {
-        new BasePage(driver).checkUrlPage(data.get("urlCarsPage"));
-    }
-
-    @And("I verify search is not possible")
-    public void iVerifySearchIsNotPossible() throws InterruptedException {
-        CarsRentalPage crp = new CarsRentalPage(driver);
-        crp.verifyErrorCarsLocationMessage(data.get("emptyLocatinMessage"));
-    }
     @And("I choose invalid age")
     public void iChooseInvalidAge() {
         CarsRentalPage crp = new CarsRentalPage(driver);
         crp.changeDriversAge(data.get("driverAges"));
     }
 
-    @And("I verify ages are beyond of valid range")
-    public void iVerifyAgesAreBeyondOfValidRange() throws InterruptedException {
+    @And("the booking page is opened")
+    public void theBookingPageIsOpened() {
+        new BasePage(driver).checkUrlPage(data.get("urlBasePage"));
+    }
+
+    @And("the language is chosen")
+    public void theLanguageIsChosen() throws InterruptedException {
+        new StaysHomePage(driver).headerComponent.chooseLanguage(data.get("language"));
+        pause(1);
+    }
+
+    @When("a user enters destination location")
+    public void aUserEntersDestinationLocation() throws InterruptedException {
+        new StaysHomePage(driver).setLocation(data.get("location"));
+    }
+
+    @And("a user enters check in and checkout date")
+    public void aUserEntersCheckInAndCheckoutDate() {
+        StaysHomePage staysHomePage = new StaysHomePage(driver);
+        staysHomePage.openCalendar();
+        staysHomePage.setDate(data.get("checkInDate"));
+        staysHomePage.setDate(data.get("checkOutDate"));
+    }
+
+    @And("a user add number of adults and children")
+    public void aUserAddNumberOfAdultsAndChildren() throws InterruptedException {
+        StaysHomePage staysHomePage = new StaysHomePage(driver);
+        staysHomePage.openGuestMenu();
+        staysHomePage.addAdults(data.get("numAdults"));
+        staysHomePage.addChildren(data.get("numChildren"), data.get("childrenAges"));
+    }
+
+    @And("a user add number of rooms")
+    public void aUserAddNumberOfRooms() {
+        new StaysHomePage(driver).addRooms(data.get("numRooms"));
+    }
+
+    @And("a user click search button")
+    public void aUserClickSearchButton() {
+        new StaysHomePage(driver).clickSearchButton();
+    }
+
+    @Then("stay should be verified")
+    public void stayShouldBeVerified() throws InterruptedException {
+        new StaysHomePage(driver).verifyResults(data.get("verifResults"));
+    }
+
+    @Given("a user reads test data from {string} {string} by id {string}")
+    public void aUserReadsTestDataFromById(String fileName, String sheetName, String id) throws Exception {
+        data = new ExcelSupport().getDataByID(fileName, sheetName, id);
+    }
+
+    @And("the booking car page is opened")
+    public void theBookingCarPageIsOpened() {
+        new HeaderComponent(driver).navigateToCarsPage();
+        new BasePage(driver).checkUrlPage(data.get("urlCarsPage"));
+    }
+
+    @When("a user enters pickup location")
+    public void aUserEntersPickupLocation() {
+        new CarsRentalPage(driver).setPickUpLocation(data.get("origin1"));
+    }
+
+    @And("a user clicks on calendar")
+    public void aUserClicksOnCalendar() {
+        CarsRentalPage crp = new CarsRentalPage(driver);
+        crp.calendarCars();
+    }
+
+    @When("a user add pickup and dropoff time")
+    public void aUserAddPickupAndDropoffTime() {
+        CarsRentalPage crp = new CarsRentalPage(driver);
+        crp.pickUpAndDropOffTime(data.get("pickupHour"), data.get("pickupMinutes"), data.get("dropHour"), data.get("dropMinutes"));
+    }
+
+    @And("a user click search car button")
+    public void aUserClickSearchCarButton() {
+        CarsRentalPage crp = new CarsRentalPage(driver);
+        crp.searchCars();
+    }
+
+    @Given("a user reads test data from {string} {string} by row {string}")
+    public void aUserReadsTestDataFromByRow(String fileName, String sheetName, String rowNum) throws IOException {
+        data = new ExcelSupport().getExcelByRow(fileName, sheetName, rowNum);
+    }
+
+    @Then("the ages are beyond of valid range, search is not possible should be verified")
+    public void theAgesAreBeyondOfValidRangeSearchIsNotPossibleShouldBeVerified() throws InterruptedException {
         CarsRentalPage crp = new CarsRentalPage(driver);
         crp.verifyErrorAgesMessage(data.get("wrongAgesMessage"));
+    }
+
+    @Then("the pickup location is empty, search is not possible should be verified")
+    public void thePickupLocationIsEmptySearchIsNotPossibleShouldBeVerified() throws InterruptedException {
+        CarsRentalPage crp = new CarsRentalPage(driver);
+        crp.verifyErrorCarsLocationMessage(data.get("emptyLocatinMessage"));
+    }
+
+    @And("the booking flight page is opened")
+    public void theBookingFlightPageIsOpened() {
+        new StaysHomePage(driver).headerComponent.navigateToFlightsPage();
+        new BasePage(driver).checkUrlPage(data.get("urlFlightPage"));
+    }
+
+    @When("a user add number of adult and children at the flights card")
+    public void aUserAddNumberOfAdultAndChildrenAtTheFlightsCard() throws InterruptedException {
+        FlightsHomePage flights = new FlightsHomePage(driver);
+        flights.openPassengerMenu(data.get("numAdultsFlight"), data.get("numChildrenFlight"), data.get("childrenAgesFlight"));
+    }
+
+    @When("a user enters check in and checkout date for flights card")
+    public void aUserEntersCheckInAndCheckoutDateForFlightsCard() {
+        FlightsHomePage hp = new FlightsHomePage(driver);
+        hp.openCalendarReturnFlight();
+        hp.setDate(data.get("month3"), data.get("day3"));
+        hp.setDate(data.get("month4"), data.get("day4"));
+    }
+
+    @And("a user enters destination location for round-trip on flights card")
+    public void aUserEntersDestinationLocationForRoundTripOnFlightsCard() throws InterruptedException {
+        new FlightsHomePage(driver).enterDataReturnFlight(data.get("origin1"), data.get("destination1"));
+    }
+
+    @And("a user clicks search button on the flights card")
+    public void aUserClicksSearchButtonOnTheFlightsCard() throws InterruptedException {
+        new FlightsHomePage(driver).search();
+    }
+
+    @Then("round-trip should be verified")
+    public void roundTripShouldBeVerified() throws InterruptedException {
+        FlightsHomePage hp = new FlightsHomePage(driver);
+        hp.verifyRoundTripFlightResults(data.get("expectedText3"), data.get("expectedText4"));
+    }
+
+    @When("a user enters destination location for one-way on flights card")
+    public void aUserEntersDestinationLocationForOneWayOnFlightsCard() {
+        new FlightsHomePage(driver).enterOneWayFlight(data.get("origin1"), data.get("destination1"));
+    }
+
+    @When("a user sets date for one-way on flights card")
+    public void aUserSetsDateForOneWayOnFlightsCard() {
+        FlightsHomePage hp = new FlightsHomePage(driver);
+        hp.openCalendarOneWayFlight();
+        hp.setDate(data.get("month3"), data.get("day3"));
+    }
+
+    @Then("one-way should be verified")
+    public void oneWayShouldBeVerified() {
+        FlightsHomePage hp = new FlightsHomePage(driver);
+        hp.verifyOneWayFlightResults(data.get("expectedText3"));
+    }
+
+    @Then("multiple should be verified")
+    public void multipleShouldBeVerified() throws InterruptedException, IOException {
+        FlightsHomePage hp = new FlightsHomePage(driver);
+        new BasePage(driver).reportScreenshotAllure(ScrShoot2, ScrShootDesc, ScrYesOrNo);
+        hp.verifyMultipleTripFlightResults(data.get("expectedText3"), data.get("expectedText4"));
+    }
+
+    @And("a user chosen multiple option")
+    public void aUserChosenMultipleOption() {
+        new FlightsHomePage(driver).clickMultipleDestinationOption();
+    }
+
+    @When("a user add destinations")
+    public void aUserAddDestinations() throws InterruptedException {
+        new FlightsHomePage(driver).enterDestinations(data);
+    }
+
+    @And("a user chosen I class")
+    public void aUserChosenIClass() {
+        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass1"), data.get("expectedFlightClass1"));
+    }
+
+    @When("a user chosen II class")
+    public void aUserChosenIIClass() {
+        new FlightsHomePage(driver).flightClass(data.get("flightClass2"));
+    }
+
+    @And("chosen II clas should be verified")
+    public void chosenIIClasShouldBeVerified() throws InterruptedException {
+        new FlightsHomePage(driver).verifyPremiumNegativeScenario(data.get("expectedTextPremium"));
+    }
+
+    @When("a user chosen III class")
+    public void aUserChosenIIIClass() {
+        new FlightsHomePage(driver).flightClass(data.get("flightClass3"));
+    }
+
+    @And("chosen III clas should be verified")
+    public void chosenIIIClasShouldBeVerified() {
+        new FlightsHomePage(driver).verifyFlightClass(data.get("flightClass3"), data.get("expectedFlightClass3"));
+    }
+
+    @When("a user chosen IV class")
+    public void aUserChosenIVClass() {
+        new FlightsHomePage(driver).flightClass(data.get("flightClass4"));
+    }
+
+    @Then("chosen IV clas should be verified")
+    public void chosenIVClasShouldBeVerified() throws InterruptedException {
+        new FlightsHomePage(driver).verifyFirstClassNegativeScenario(data.get("expectedTextFirstClass"));
     }
 }

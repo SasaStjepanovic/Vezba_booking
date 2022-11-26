@@ -156,6 +156,7 @@ public class FlightsHomePage extends BasePage {
         compareData(returnReturnFlightInfo, expectedText4);
     }
 
+    //TODO this is an known issue on booking page since the USA language always remain
     public void verifyMultipleTripFlightResults(String expectedText3, String expectedText4) throws InterruptedException {
         compareData(multipleFlightInfo3, expectedText3);
         Thread.sleep(1000);
