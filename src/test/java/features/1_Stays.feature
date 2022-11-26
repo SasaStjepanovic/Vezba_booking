@@ -3,17 +3,15 @@ Feature: Stays scenarios include next cases: Set location, start/end date, numbe
   @Flights
   Scenario Outline: Book a stays
 
-    Given I read test data from "Booking" "Stays" by id "<TC_ID>"
-    Given I verify that the booking page is open
-    And I choose language
-    When I enter destination location
-    And I enter check in date
-    And I enter check out date
-    And I add adults
-    And I add children
-    And I add rooms
-    And I click search button
-    And I verify found stays
+    Given a user reads test data from "Booking" "Stays" by id "<TC_ID>"
+    And the booking page is opened
+    And the language is chosen
+    When a user enters destination location
+    And a user enters check in and checkout date
+    And a user add number of adults and children
+    And a user add number of rooms
+    And a user click search button
+    Then stay should be verified
 
     Examples:
       | TC_ID  |
