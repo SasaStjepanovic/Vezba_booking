@@ -3,7 +3,7 @@ Feature: Car rentals scenarios include next cases:
   @Flights
   Scenario Outline: Cars positive scenario
 
-    Given a user reads test data from "Booking" "Cars" by id "<TC_ID>"
+    Given a user reads test data from "TestData[GoogleSheets]" "Cars" by id "<TC_ID>"
     And the booking page is opened
     And the language is chosen
     And the booking car page is opened
@@ -19,7 +19,7 @@ Feature: Car rentals scenarios include next cases:
   @Flights
   Scenario Outline: Cars negative scenario when pickup location is not fulfilled
 
-    Given a user reads test data from "Booking" "Cars" by id "<TC_ID>"
+    Given a user reads test data from "TestData[GoogleSheets]" "Cars" by id "<TC_ID>"
     And the booking page is opened
     And the language is chosen
     And the booking car page is opened
@@ -33,7 +33,7 @@ Feature: Car rentals scenarios include next cases:
   @Flights
   Scenario Outline: Cars negative scenario when ages are beyond of valid range
 
-    Given a user reads test data from "Booking" "Cars" by id "<TC_ID>"
+    Given a user reads test data from "TestData[GoogleSheets]" "Cars" by id "<TC_ID>"
     And the booking page is opened
     And the language is chosen
     And the booking car page is opened

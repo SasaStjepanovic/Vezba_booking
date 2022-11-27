@@ -3,7 +3,7 @@ Feature: Stays scenarios include next cases: Set location, start/end date, numbe
   @Flights
   Scenario Outline: Book a stays
 
-    Given a user reads test data from "Booking" "Stays" by id "<TC_ID>"
+    Given a user reads test data from "Booking[Excel]" "Stays" by id "<TC_ID>"
     And the booking page is opened
     And the language is chosen
     When a user enters destination location

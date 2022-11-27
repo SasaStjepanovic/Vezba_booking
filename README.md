@@ -6,6 +6,8 @@
 ## Preconditions
 #### Internet connection ####
 #### Delete cookies and cached memories from web browser ####
+#### Microsoft Excel should be installed or access to Google Sheets ###
+
 
 ## Instalation
 

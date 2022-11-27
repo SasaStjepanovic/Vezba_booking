@@ -2,7 +2,7 @@ Feature: Flights scenarios include next cases: Round-trip, One-way, Multi-city, 
 
   @Flights
   Scenario Outline: Book a Round-trip destination flight
-    Given a user reads test data from "Booking" "Flights" by row "<row>"
+    Given a user reads test data from "Booking[Excel]" "Flights" by row "<row>"
     And the booking page is opened
     And the language is chosen
     And the booking flight page is opened
@@ -19,7 +19,7 @@ Feature: Flights scenarios include next cases: Round-trip, One-way, Multi-city, 
   @Flights
   Scenario Outline: Book a one-way destination flight
 
-    Given a user reads test data from "Booking" "Flights" by row "<row>"
+    Given a user reads test data from "Booking[Excel]" "Flights" by row "<row>"
     And the booking page is opened
     And the language is chosen
     And the booking flight page is opened
@@ -35,7 +35,7 @@ Feature: Flights scenarios include next cases: Round-trip, One-way, Multi-city, 
   @Flights
   Scenario Outline: Book a multiple destination flight
 
-    Given a user reads test data from "Booking" "Flights" by row "<row>"
+    Given a user reads test data from "Booking[Excel]" "Flights" by row "<row>"
     And the booking page is opened
     And the language is chosen
     And the booking flight page is opened
@@ -50,7 +50,7 @@ Feature: Flights scenarios include next cases: Round-trip, One-way, Multi-city, 
   @Flights
   Scenario Outline: Choose different flight class
 
-    Given a user reads test data from "Booking" "Flights" by row "<row>"
+    Given a user reads test data from "Booking[Excel]" "Flights" by row "<row>"
     And the booking page is opened
     And the language is chosen
     And the booking flight page is opened
